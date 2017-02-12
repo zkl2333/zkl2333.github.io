@@ -1,30 +1,103 @@
-#main{
-	display: block;
-	margin-top: 10rem;
+html {
+	box-sizing: border-box;
+	height: 100vh;
+	background-image: url(img/bj.jpg);
+	background-size: cover;
+	padding: 1rem;
 }
-#logo{
+
+body {
+	margin: 0;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 1rem;
+}
+
+@media all and (min-height: 450px) {
+	#main {
+		padding-top: 15vh;
+		height: 68vh;
+	}
+	
+}
+
+@media all and (min-height: 500px) {
+	#main {
+		padding-top: 20vh;
+		height: 60vh;
+	}
+}
+
+@media all and (min-width: 400px) {
+	#main ul li a {
+		height: 3rem;
+		width: 3rem;
+	}
+	.fa:before {
+		font-size: 2em;
+		line-height: 3rem;
+	}
+}
+
+#main {
+	display: block;
+	/*margin-top: 25vh;*/
+	/*background-color: #999999;*/
+	/*height: auto;*/
+	/*height: 65vh;*/
+	max-height: 100%;
+}
+
+#logo {
 	border-style: solid;
 	border-width: 5px;
-	border-color: rgba(0,0,0,0.1);
+	border-color: rgba(0, 0, 0, 0.1);
 	display: block;
-	height: 15rem;
+	width: 30vw;
+	max-width: 10rem;
 	margin-right: auto;
 	margin-left: auto;
-	border-radius: 10rem;
+	border-radius: 50%;
 	box-shadow: 0px 0px 50px 5px #888888;
 }
-#main>h1,h2{
-	max-width: 40rem;
+
+#main>h1,
+h2 {
 	text-align: center;
-	margin: .5rem auto;
+	margin: 0.5rem auto;
 }
-#main ul{
+
+#main ul {
 	text-align: center;
 	margin: auto;
 	padding: 0;
 }
-#main ul li{
+
+#main ul li {
 	display: inline-block;
 	list-style: none;
+}
 
+#main ul li a {
+	line-height: 2rem;
+	display: block;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.2);
+	border-radius: 50%;
+	min-width: 2rem;
+}
+
+footer {
+	margin: 20px;
+	text-align: center;
+}
+
+.fa:before {
+	/*font-size: 1.5em;*/
+	/*line-height: 2rem;*/
+	color: #333333;
+}
+
+.fa:hover:before {
+	color: #EEEEEE;
 }
