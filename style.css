@@ -34,14 +34,14 @@ body {
 @media all and (min-height: 200px) {
 	#main {
 		padding-top: 5vh;
-		height: 68vh;
+		
 	}
 }
 
 @media all and (min-height: 400px) {
 	#main {
 		padding-top: 15vh;
-		height: 68vh;
+		
 	}
 	h1 {
 		font-size: 30px !important;
@@ -51,13 +51,15 @@ body {
 @media all and (min-height: 500px) {
 	#main {
 		padding-top: 20vh;
-		height: 60vh;
+		
 	}
 }
 
+#main ul li a {
+		width: 2.5rem;
+	}
 @media all and (min-width: 400px) {
 	#main ul li a {
-		height: 3rem;
 		width: 3rem;
 	}
 }
