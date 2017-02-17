@@ -1,7 +1,25 @@
+p,
+b {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+a {
+	color: #666;
+	text-decoration: none
+}
+
 html {
 	box-sizing: border-box;
 	height: 100vh;
-	background-image: url(img/bj.jpg);
+	/*background-image: url("https://api.i-meto.com/bing?new&blur");*/
+	background: -webkit-linear-gradient(#BABABA, #9999FF);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(#BABABA, #9999FF);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(#BABABA, #9999FF);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(#FFF, #BABABA);
+	/* 标准的语法 */
 	background-size: cover;
 	padding: 0.3rem;
 }
@@ -9,8 +27,8 @@ html {
 body {
 	margin: 0;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0.3);
-	border-radius: 1rem;
+	background-color: rgba(255, 255, 255, 0.4);
+	border-radius: 0.8rem;
 }
 
 @media all and (min-height: 200px) {
@@ -42,19 +60,11 @@ body {
 		height: 3rem;
 		width: 3rem;
 	}
-	.group-logo li a i.fa:before {
-		font-size: 2em;
-		line-height: 3rem;
-	}
 }
 
-#main {
-	display: block;
-	/*margin-top: 25vh;*/
-	/*background-color: #999999;*/
-	/*height: auto;*/
-	/*height: 65vh;*/
-	max-height: 100%;
+.group-logo li a i.fa:before {
+	font-size: 2em;
+	line-height: 3rem;
 }
 
 #logo {
@@ -63,15 +73,18 @@ body {
 	border-color: rgba(0, 0, 0, 0.1);
 	display: block;
 	width: 30vw;
-	max-width: 5rem;
+	max-width: 8rem;
 	margin-right: auto;
 	margin-left: auto;
 	border-radius: 50%;
-	box-shadow: 0px 0px 50px 5px #888888;
+	box-shadow: 0px 0px 20px 2px #888888;
+}
+#logo:hover{
+	box-shadow: 0px 0px 10px 2px #888888;
 }
 
 #main>h1,
-h2 {
+p {
 	text-align: center;
 	margin: 0.5rem auto;
 	font-size: 20px;
@@ -90,24 +103,22 @@ h2 {
 
 #main ul li a {
 	line-height: 2rem;
-	display: block;
-	/*border-style: solid;
-	border-color: rgba(0, 0, 0, 0.2);
-	border-radius: 50%;
-	min-width: 2rem;*/
+	display: inline-block;
 }
 
 footer {
-	margin: 20px;
+	position: fixed;
+	bottom: 0.5rem;
+	width: 100%;
+	/*margin: 20px;*/
 	text-align: center;
 }
 
 .group-logo li a i.fa:before {
-	/*font-size: 1.5em;*/
-	/*line-height: 2rem;*/
 	color: #333333;
 }
 
 .group-logo li a i.fa:hover:before {
 	color: #EEEEEE;
+	text-shadow: 0px 0px 10px #888888;
 }
