@@ -1,3 +1,5 @@
 language: node_js
-install: true
-
+node_js: node
+deploy:
+  provider: script
+  script: ftp.sh
