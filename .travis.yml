@@ -1,5 +1,8 @@
-language: node_js
-node_js: node
-deploy:
-  provider: script
-  script: sh ftp.sh
+install: 
+- 'git clone https://github.com/git-ftp/git-ftp.git'
+- 'cd git-ftp'
+- 'sudo make install'
+script:
+- 'cd ../'
+- 'ls'
+- 'echo y|git ftp push --user $FTP_USER --passwd $FTP_PASSWORD ftp://$FTP_HOST/htdocs'
