@@ -1,5 +1,3 @@
-language: node_js
-node_js: node
-deploy:
-  provider: script
-  script: sh ftp.sh
+install: true
+script:
+- 'bush ftp.sh'
