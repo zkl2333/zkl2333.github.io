@@ -2,4 +2,4 @@ language: node_js
 node_js: node
 deploy:
   provider: script
-  script: ftp.sh
+  script: sh ftp.sh
