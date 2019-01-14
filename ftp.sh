@@ -11,6 +11,7 @@ echo $sss
 aaa=`find $updir -path "./.git" -prune -o -type f -printf 'put %P\n'`  
 ftp -nv $ip <<EOF  
 user $user $password 
+passive mode
 type binary
 prompt  
 cd $todir  
