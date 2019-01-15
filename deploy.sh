@@ -1,6 +1,17 @@
 #!/bin/bash 
 
+echo "创建临时目录"
+
+mkdir temp
+cd temp
+
+echo "克隆项目"
+git clone git@github.com:zkl2333/home-page.git
+cd home-page
+
 #upload dir to remote ftp server 
+
+echo "开始上传"
 updir='./'     #local dir 
 todir='./htdocs'    #remote dir 
 ip=$FTP_HOST       #remote IP 
@@ -11,7 +22,6 @@ echo $sss
 aaa=`find $updir -path "./.git" -prune -o -type f -printf 'put %P\n'`  
 ftp -nv $ip <<EOF  
 user $user $password 
-passive mode
 type binary
 prompt  
 cd $todir  
@@ -19,3 +29,8 @@ $sss
 $aaa
 quit  
 EOF
+
+echo "上传完毕，清理临时目录"
+
+cd ../../
+rm -rf temp

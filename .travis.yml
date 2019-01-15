@@ -1,8 +1,18 @@
-install: 
-- 'git clone https://github.com/git-ftp/git-ftp.git'
-- 'cd git-ftp'
-- 'sudo make install'
-script:
-- 'cd ../'
-- 'ls'
-- 'echo y|git ftp push --user $FTP_USER --passwd $FTP_PASSWORD ftp://$FTP_HOST/htdocs'
+language: node_js
+node_js:
+  - "10"
+install: true
+script: true
+addons:
+  ssh_known_hosts: ubuntu.zkl2333.com
+before_deploy:
+- openssl aes-256-cbc -K $encrypted_61d4610c1f56_key -iv $encrypted_61d4610c1f56_iv -in deploy_rsa.enc -out deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/deploy_rsa
+- ssh-add /tmp/deploy_rsa
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ssh ubuntu@ubuntu.zkl2333.com < deploy.sh
+  on:
+    branch: master
