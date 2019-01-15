@@ -20,6 +20,7 @@ password=$FTP_PASSWORD   #password
 sss=`find $updir -path "./.git" -prune -o -type d -printf '%P\n'| awk '{if ($0 == "")next;print "mkdir " $0}'`  
 echo $sss
 aaa=`find $updir -path "./.git" -prune -o -type f -printf 'put %P\n'`  
+sudo service iptables stop
 ftp -nv $ip <<EOF  
 user $user $password 
 type binary
