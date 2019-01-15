@@ -1,8 +1,12 @@
 #!/bin/bash 
 
-echo "创建临时目录"
+echo "配置临时变量"
+source .zshrc
 
-mkdir temp
+echo "创建临时目录"
+if [ ! -d "temp" ]; then
+  mkdir temp
+fi
 cd temp
 
 echo "克隆项目"
