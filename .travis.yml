@@ -18,4 +18,4 @@ deploy:
   on:
     branch: master
 after_deploy:
-  - sh sh/cdn.sh
+  - ssh -t ubuntu@ubuntu.zkl2333.com < sh sh/cdn.sh
