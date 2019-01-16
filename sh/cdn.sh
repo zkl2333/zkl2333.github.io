@@ -5,6 +5,5 @@ curl https://api.upyun.com/buckets/purge/batch \
 -d 'source_url=http://home.zkl2333.com/
 http://home.zkl2333.com/*' \
 -o t.txt
-echo -e '打印结果'
+echo -e '\n打印结果'
 cat t.txt
-rm t.txt
