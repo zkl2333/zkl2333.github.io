@@ -14,8 +14,8 @@ deploy:
   provider: script
   skip_cleanup: true
   script: 
-  - ssh -t ubuntu@ubuntu.zkl2333.com < deploy.sh
+  - ssh -t ubuntu@ubuntu.zkl2333.com < sh/deploy.sh
   on:
     branch: master
 after_deploy:
-  - sh cdn.sh
+  - sh sh/cdn.sh
