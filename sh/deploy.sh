@@ -1,4 +1,5 @@
 #!/bin/bash 
+set -v
 
 echo "配置临时变量"
 source .zshrc
