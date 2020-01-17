@@ -3,6 +3,7 @@ node_js:
   - "10"
 install: true
 script: true
-deploy: true
+deploy: 
+  - echo "no deploy"
 after_deploy:
   - sh sh/cdn.sh
