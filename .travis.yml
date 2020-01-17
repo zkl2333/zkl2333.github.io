@@ -4,6 +4,11 @@ node_js:
 install: true
 script: true
 deploy: 
+  provider: script
+  skip_cleanup: true
+  script: 
   - echo "no deploy"
+  on:
+    branch: master
 after_deploy:
   - sh sh/cdn.sh
