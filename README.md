@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/zkl2333/zkl2333.github.io.svg?branch=master)](https://travis-ci.org/zkl2333/zkl2333.github.io)
 
-## 主要功能
+## 主要内容
 
 你好，很高兴见到你。
 
