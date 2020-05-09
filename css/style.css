@@ -1,71 +1,61 @@
 p,
 b {
-	font-family: "Helvetica Neue", "Helvetica", "Arial", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", "PingFang SC",
+		"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+	margin: 5px;
 }
 
 a {
 	color: #666;
-	text-decoration: none
+	text-decoration: none;
 }
 
 html {
-	box-sizing: border-box;
-	height: 100vh;
-	/*background-image: url("https://api.i-meto.com/bing?new&blur");*/
-	background: -webkit-linear-gradient(#BABABA, #9999FF);
-	/* Safari 5.1 - 6.0 */
-	background: -o-linear-gradient(#BABABA, #9999FF);
-	/* Opera 11.1 - 12.0 */
-	background: -moz-linear-gradient(#BABABA, #9999FF);
-	/* Firefox 3.6 - 15 */
-	background: linear-gradient(#FFF, #BABABA);
-	/* 标准的语法 */
+	background: linear-gradient(#fff, #bababa);
 	background-size: cover;
-	padding: 0.3rem;
+	user-select: none;
+}
+
+h1,
+p {
+	user-select: text;
+}
+
+::selection {
+	background: #d3d3d3;
+	color: #555;
 }
 
 body {
+	height: 100vh;
 	margin: 0;
+	padding: 0.5rem;
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0.4);
 	border-radius: 0.8rem;
 }
 
-@media all and (min-height: 200px) {
-	#main {
-		padding-top: 5vh;
-		
-	}
+#main {
+	padding-bottom: 10vh;
 }
 
-@media all and (min-height: 400px) {
-	#main {
-		padding-top: 15vh;
-		
-	}
-	h1 {
-		font-size: 30px !important;
-	}
-}
-
-@media all and (min-height: 500px) {
-	#main {
-		padding-top: 20vh;
-		
-	}
+nav {
+	margin: 20px 0;
 }
 
 #main ul li a {
-		width: 2.5rem;
-	}
-@media all and (min-width: 400px) {
-	#main ul li a {
-		width: 3rem;
-	}
+	width: 4rem;
 }
 
 .group-logo li a i.fa:before {
-	font-size: 2em;
+	font-size: 2.5em;
 	line-height: 3rem;
 }
 
@@ -81,14 +71,22 @@ body {
 	border-radius: 50%;
 	box-shadow: 0px 0px 20px 2px #888888;
 }
-#logo:hover{
+#logo:hover {
 	box-shadow: 0px 0px 10px 2px #888888;
 }
 
-#main>h1,
-p {
+#main > h1 {
 	text-align: center;
 	margin: 0.5rem auto;
+	font-size: 30px;
+}
+
+#main .dis {
+	margin: 20px;
+}
+
+#main .dis > p {
+	text-align: center;
 	font-size: 20px;
 }
 
@@ -110,9 +108,8 @@ p {
 
 footer {
 	position: absolute;
-	bottom: 0.5rem;
+	bottom: 1rem;
 	width: 100%;
-	/*margin: 20px;*/
 	text-align: center;
 }
 
@@ -121,6 +118,16 @@ footer {
 }
 
 .group-logo li a i.fa:hover:before {
-	color: #EEEEEE;
+	color: #eeeeee;
 	text-shadow: 0px 0px 10px #888888;
+}
+
+@media all and (max-width: 375px) {
+	#main .dis > p {
+		font-size: 16px;
+		padding: 0 10px;
+	}
+	#main {
+		padding-bottom: 0;
+	}
 }
