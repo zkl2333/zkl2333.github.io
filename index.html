@@ -1,64 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-hans">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>zkl2333のHomePage</title>
 		<script>
-			if (location.host !== "home.zkl2333.com") {
+			if (
+				!(
+					location.hostname === "home.zkl2333.com" ||
+					location.hostname === "localhost" ||
+					/^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$/.test(
+						location.hostname
+					)
+				)
+			) {
 				location.assign("//home.zkl2333.com");
 			}
 		</script>
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link
 			href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 			rel="stylesheet"
 		/>
 	</head>
 	<body>
-		<div class="container">
-			<div id="main">
-				<img id="logo" src="img/logo.jpeg" />
-				<h1>Vincent</h1>
-				<div class="dis">
-					<p>你好，很高兴见到你。</p>
-					<p>我叫 Vincent，常用 ID:zkl2333</p>
-					<p>是一个很菜的前端爱好者。你可以通过以下方式勾搭我。</p>
-				</div>
-				<nav>
-					<ul class="group-logo">
-						<li>
-							<a href="https://github.com/zkl2333"
-								><i class="fa fa-github"></i
-							></a>
-						</li>
-						<li>
-							<a href="https://www.zkl2333.com"
-								><i class="fa fa-home"></i
-							></a>
-						</li>
-						<li>
-							<a href="https://twitter.com/zkl2333"
-								><i class="fa fa-twitter"></i
-							></a>
-						</li>
-						<li>
-							<a href="mailto:i@zkl2333.com"
-								><i class="fa fa-envelope-o"></i
-							></a>
-						</li>
-						<li>
-							<a href="http://weibo.com/zkl2333"
-								><i class="fa fa-weibo"></i
-							></a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-			<footer>
-				<i class="fa fa-copyright"></i><b>zkl2333 2017-2020</b><br />
-				<a href="https://beian.miit.gov.cn">浙ICP备17004361号-1</a>
-			</footer>
-		</div>
+		<div id="app"></div>
+		<script type="module" src="/src/main.js"></script>
 	</body>
 </html>
