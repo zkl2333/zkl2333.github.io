@@ -2,7 +2,7 @@
 	<div class="container">
 		<div id="main">
 			<img id="logo" src="./assets/logo.jpeg" />
-			<h1>Vincent</h1>
+			<!-- <h1>张克凌</h1> -->
 			<div class="dis">
 				<p>你好，很高兴见到你。</p>
 				<p>我叫 张克凌，常用 ID:zkl2333</p>
@@ -52,6 +52,11 @@ let icons = [
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	// 选中文字
+	::selection {
+		background: #d3d3d3;
+		color: #555;
+	}
 	&::before {
 		box-shadow: #333333 0px 0px 10px 0px;
 		content: "";
@@ -77,7 +82,7 @@ let icons = [
 }
 p,
 b {
-	font-family: "Helvetica Neue", "Helvetica", "Arial", "PingFang SC",
+	font-family: "PingFang SC", "Helvetica Neue", "Helvetica", "Arial",
 		"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	margin: 5px;
 }
@@ -88,10 +93,6 @@ a {
 h1,
 p {
 	user-select: text;
-}
-::selection {
-	background: #d3d3d3;
-	color: #555;
 }
 #main {
 	padding-bottom: 10vh;
@@ -136,6 +137,7 @@ nav {
 	text-align: center;
 	margin: auto;
 	padding: 0;
+	margin-bottom: 100px;
 }
 #main ul li {
 	display: inline-block;
