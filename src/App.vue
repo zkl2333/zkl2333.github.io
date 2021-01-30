@@ -1,12 +1,14 @@
 <template>
 	<div class="container">
-		<div id="main">
+		<div v-show="!isShowResume" id="main">
 			<img id="logo" src="./assets/logo.jpeg" />
-			<!-- <h1>张克凌</h1> -->
+			<div class="button" @click="showResume">
+				<p>查看简历</p>
+			</div>
 			<div class="dis">
-				<p>你好，很高兴见到你。</p>
+				<p>你好，很高兴见到你</p>
 				<p>我叫 张克凌，常用 ID:zkl2333</p>
-				<p>是一个很菜的前端爱好者。你可以通过以下方式勾搭我。</p>
+				<p>是一个很菜的前端爱好者，你可以通过以下方式找到我</p>
 			</div>
 			<nav>
 				<ul class="group-logo">
@@ -20,10 +22,30 @@
 				<a href="https://beian.miit.gov.cn">浙ICP备17004361号-1</a>
 			</footer>
 		</div>
+		<div v-show="isShowResume" id="resume">
+			<div style="padding-bottom: 20px" @click="hideResume">
+				{{ "<" }} 返回
+			</div>
+			<section class="markdown-body" v-html="resume" />
+			<div class="button" @click="hideResume"><p>返回</p></div>
+		</div>
 	</div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import resume from "./assets/张克凌-前端工程师.md";
+
+let isShowResume = ref(false);
+
+function showResume() {
+	isShowResume.value = true;
+}
+
+function hideResume() {
+	isShowResume.value = false;
+}
+
 let icons = [
 	{ url: "https://github.com/zkl2333", iconfont: "fa fa-github" },
 	{
@@ -46,12 +68,31 @@ let icons = [
 </script>
 
 <style lang="scss" scoped>
+.button {
+	background: #3498db;
+	width: 180px;
+	padding: 4px 0;
+	border-radius: 3px;
+	display: inline-block;
+	p {
+		text-align: center;
+		text-transform: uppercase;
+		color: #fff;
+		user-select: none;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}
 .container {
 	min-height: var(--app-height, 100vh);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	padding: 10px;
+	box-sizing: border-box;
 	// 选中文字
 	::selection {
 		background: #d3d3d3;
@@ -67,9 +108,13 @@ let icons = [
 		left: 10px;
 		right: 10px;
 		border-radius: 0.8rem;
-		background: #fafafa;
+		background: #fcfcfc;
 	}
 	#main {
+		text-align: center;
+		nav {
+			margin: 10px 0 0 0;
+		}
 		footer {
 			position: absolute;
 			bottom: 20px;
@@ -77,6 +122,58 @@ let icons = [
 			right: 0;
 			width: 100%;
 			text-align: center;
+		}
+	}
+	:deep(#resume) {
+		padding: 20px;
+		width: 100%;
+		max-width: 800px;
+		.markdown-body {
+			color: #333;
+			a {
+				color: #4a8576;
+				&:hover {
+					opacity: 0.6;
+				}
+			}
+			del {
+				color: #999;
+			}
+			p {
+				margin-top: 0;
+				margin-bottom: 16px;
+			}
+			h1,
+			h2,
+			h3 {
+				margin-top: 24px;
+				margin-bottom: 16px;
+				font-weight: 600;
+				line-height: 1.25;
+				&::before {
+					content: "# ";
+					color: #4a8576;
+				}
+			}
+			h1 {
+				font-size: 3em;
+				padding: 0;
+				margin-top: 0;
+			}
+			h2 {
+				font-size: 2em;
+			}
+			h3 {
+				font-size: 1.5em;
+			}
+			hr {
+				border: none;
+				height: 1px;
+				background: #eeeeee;
+			}
+			li {
+				margin: 5px 0;
+			}
 		}
 	}
 }
@@ -94,12 +191,7 @@ h1,
 p {
 	user-select: text;
 }
-#main {
-	padding-bottom: 10vh;
-}
-nav {
-	margin: 20px 0;
-}
+
 #main ul li a {
 	width: 4rem;
 }
@@ -114,7 +206,7 @@ nav {
 	display: block;
 	width: 30vw;
 	max-width: 8rem;
-	margin: 50px auto;
+	margin: 50px auto 30px auto;
 	border-radius: 50%;
 	box-shadow: 0px 0px 20px 2px #888888;
 }
@@ -158,9 +250,6 @@ nav {
 	#main .dis > p {
 		font-size: 16px;
 		padding: 0 10px;
-	}
-	#main {
-		padding-bottom: 0;
 	}
 }
 </style>

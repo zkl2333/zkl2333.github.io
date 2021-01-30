@@ -1,12 +1,10 @@
 import vue from "@vitejs/plugin-vue";
-const path = require("path");
-
-console.log(path.resolve(__dirname, "src"));
+import md from "./plugins/md";
 
 /**
  * https://vitejs.dev/config/
  * @type {import('vite').UserConfig}
  */
 export default {
-	plugins: [vue()],
+	plugins: [vue(), md()],
 };
