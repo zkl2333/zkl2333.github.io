@@ -14,14 +14,6 @@
 			}
 		},
 		{
-			"files": "*.php",
-			"options": {
-				"parser": "php",
-				"singleQuote": true,
-				"trailingComma": "all"
-			}
-		},
-		{
 			"files": ".prettierrc",
 			"options": { "parser": "json" }
 		}

@@ -1,7 +1,7 @@
 {
 	"name": "home-page",
 	"version": "1.0.0",
-	"description": "一直都是拿别人的东西修修改改，我要学着自己动手了",
+	"description": "zkl2333的个人主页",
 	"main": "main.js",
 	"scripts": {
 		"dev": "vite",
@@ -10,22 +10,23 @@
 	},
 	"dependencies": {
 		"marked": "^2.0.0",
-		"vue": "^3.0.5"
+		"vue": "^3.0.5",
+		"vue-router": "4"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^1.1.2",
 		"@vue/compiler-sfc": "^3.0.5",
 		"sass": "^1.32.5",
-		"vite": "^2.0.0-beta.59"
+		"vite": "^2.0.1"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/zkl2333/home-page.git"
+		"url": "git+https://github.com/zkl2333/zkl2333.github.io.git"
 	},
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/zkl2333/home-page/issues"
+		"url": "https://github.com/zkl2333/zkl2333.github.io/issues"
 	},
-	"homepage": "https://github.com/zkl2333/home-page#readme"
+	"homepage": "https://github.com/zkl2333/zkl2333.github.io#readme"
 }

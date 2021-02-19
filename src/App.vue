@@ -1,89 +1,42 @@
 <template>
 	<div class="container">
-		<div v-show="!isShowResume" id="main">
-			<img id="logo" src="./assets/logo.jpeg" />
-			<div class="button" @click="showResume">
-				<p>查看简历</p>
-			</div>
-			<div class="dis">
-				<p>你好，很高兴见到你</p>
-				<p>我叫 张克凌，常用 ID:zkl2333</p>
-				<p>是一个很菜的前端爱好者，你可以通过以下方式找到我</p>
-			</div>
-			<nav>
-				<ul class="group-logo">
-					<li v-for="icon in icons">
-						<a :href="icon.url"><i :class="icon.iconfont" /></a>
-					</li>
-				</ul>
-			</nav>
-			<footer>
-				<i class="fa fa-copyright"></i><b>zkl2333 2017-2020</b><br />
-				<a href="https://beian.miit.gov.cn">浙ICP备17004361号-1</a>
-			</footer>
-		</div>
-		<div v-show="isShowResume" id="resume">
-			<div style="padding-bottom: 20px" @click="hideResume">
-				{{ "<" }} 返回
-			</div>
-			<section class="markdown-body" v-html="resume" />
-			<div class="button" @click="hideResume"><p>返回</p></div>
-		</div>
+		<router-view />
 	</div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import resume from "./assets/张克凌-前端工程师.md";
-
-let isShowResume = ref(false);
-
-function showResume() {
-	isShowResume.value = true;
-}
-
-function hideResume() {
-	isShowResume.value = false;
-}
-
-let icons = [
-	{ url: "https://github.com/zkl2333", iconfont: "fa fa-github" },
-	{
-		url: "https://www.zkl2333.com",
-		iconfont: "fa fa-home",
-	},
-	{
-		url: "https://twitter.com/zkl2333",
-		iconfont: "fa fa-twitter",
-	},
-	{
-		url: "mailto:i@zkl2333.com",
-		iconfont: "fa fa-envelope-o",
-	},
-	{
-		url: "http://weibo.com/zkl2333",
-		iconfont: "fa fa-weibo",
-	},
-];
-</script>
-
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
-	background: #3498db;
-	width: 180px;
-	padding: 4px 0;
-	border-radius: 3px;
+	transition: all 0.1s ease-in;
+	margin: 10px;
 	display: inline-block;
-	p {
-		text-align: center;
-		text-transform: uppercase;
-		color: #fff;
-		user-select: none;
-	}
-
+	white-space: nowrap;
+	cursor: pointer;
+	background: #444;
+	letter-spacing: 1px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	line-height: 36px;
+	text-align: center;
+	height: 36px;
+	padding: 0 25px;
+	border-radius: 16px;
+	transition-duration: 400ms;
+	background-color: #fff;
+	color: #999;
 	&:hover {
-		cursor: pointer;
+		color: #f77b83;
+		border-color: #f77b83;
+		outline-style: none;
 	}
+}
+// 选中文字
+::selection {
+	background: #d3d3d3;
+	color: #555;
+}
+a {
+	color: #333;
+	text-decoration: none;
 }
 .container {
 	min-height: var(--app-height, 100vh);
@@ -93,11 +46,6 @@ let icons = [
 	position: relative;
 	padding: 10px;
 	box-sizing: border-box;
-	// 选中文字
-	::selection {
-		background: #d3d3d3;
-		color: #555;
-	}
 	&::before {
 		box-shadow: #333333 0px 0px 10px 0px;
 		content: "";
@@ -109,147 +57,6 @@ let icons = [
 		right: 10px;
 		border-radius: 0.8rem;
 		background: #fcfcfc;
-	}
-	#main {
-		text-align: center;
-		nav {
-			margin: 10px 0 0 0;
-		}
-		footer {
-			position: absolute;
-			bottom: 20px;
-			left: 0;
-			right: 0;
-			width: 100%;
-			text-align: center;
-		}
-	}
-	:deep(#resume) {
-		padding: 20px;
-		width: 100%;
-		max-width: 800px;
-		.markdown-body {
-			color: #333;
-			a {
-				color: #4a8576;
-				&:hover {
-					opacity: 0.6;
-				}
-			}
-			del {
-				color: #999;
-			}
-			p {
-				margin-top: 0;
-				margin-bottom: 16px;
-			}
-			h1,
-			h2,
-			h3 {
-				margin-top: 24px;
-				margin-bottom: 16px;
-				font-weight: 600;
-				line-height: 1.25;
-				&::before {
-					content: "# ";
-					color: #4a8576;
-				}
-			}
-			h1 {
-				font-size: 3em;
-				padding: 0;
-				margin-top: 0;
-			}
-			h2 {
-				font-size: 2em;
-			}
-			h3 {
-				font-size: 1.5em;
-			}
-			hr {
-				border: none;
-				height: 1px;
-				background: #eeeeee;
-			}
-			li {
-				margin: 5px 0;
-			}
-		}
-	}
-}
-p,
-b {
-	font-family: "PingFang SC", "Helvetica Neue", "Helvetica", "Arial",
-		"Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-	margin: 5px;
-}
-a {
-	color: #666;
-	text-decoration: none;
-}
-h1,
-p {
-	user-select: text;
-}
-
-#main ul li a {
-	width: 4rem;
-}
-.group-logo li a i.fa:before {
-	font-size: 2.5em;
-	line-height: 3rem;
-}
-#logo {
-	border-style: solid;
-	border-width: 5px;
-	border-color: rgba(0, 0, 0, 0.1);
-	display: block;
-	width: 30vw;
-	max-width: 8rem;
-	margin: 50px auto 30px auto;
-	border-radius: 50%;
-	box-shadow: 0px 0px 20px 2px #888888;
-}
-#logo:hover {
-	box-shadow: 0px 0px 10px 2px #888888;
-}
-#main > h1 {
-	text-align: center;
-	margin: 0.5rem auto;
-	font-size: 30px;
-}
-#main .dis {
-	margin: 20px;
-}
-#main .dis > p {
-	text-align: center;
-	font-size: 20px;
-}
-#main ul {
-	text-align: center;
-	margin: auto;
-	padding: 0;
-	margin-bottom: 100px;
-}
-#main ul li {
-	display: inline-block;
-	list-style: none;
-}
-#main ul li a {
-	line-height: 2rem;
-	display: inline-block;
-}
-.group-logo li a i.fa:before {
-	color: #333333;
-}
-.group-logo li a i.fa:hover:before {
-	color: #eeeeee;
-	text-shadow: 0px 0px 10px #888888;
-}
-@media all and (max-width: 375px) {
-	#main .dis > p {
-		font-size: 16px;
-		padding: 0 10px;
 	}
 }
 </style>

@@ -9,7 +9,6 @@ export default function md() {
 	return {
 		transform(src, id) {
 			if (id.endsWith(".md")) {
-				console.log(id);
 				return {
 					code: mdToJs(src),
 					map: null, // provide source map if available
