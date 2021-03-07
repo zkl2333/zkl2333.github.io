@@ -3,6 +3,7 @@
 		<router-link to="/">
 			<div class="button">返回</div>
 		</router-link>
+		<div class="button" @click="print">打印</div>
 		<section class="markdown-body" v-html="resume" />
 		<router-link to="/">
 			<div class="button">返回</div>
@@ -14,7 +15,10 @@
 import resume from "@/assets/张克凌-前端工程师.md";
 export default {
 	setup() {
-		return { resume };
+		function print() {
+			window.print();
+		}
+		return { resume, print };
 	},
 };
 </script>
