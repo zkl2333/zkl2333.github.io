@@ -20,6 +20,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media print {
+	.button {
+		display: none;
+	}
+
+	@page {
+		margin: 1cm;
+		size: A4 portrait;
+	}
+}
+
 #resume {
 	padding: 20px;
 	width: 100%;
@@ -46,10 +57,6 @@ export default {
 			margin-bottom: 16px;
 			font-weight: 600;
 			line-height: 1.25;
-			&::before {
-				content: "# ";
-				color: #4a8576;
-			}
 		}
 		h1 {
 			font-size: 3em;
@@ -58,9 +65,17 @@ export default {
 		}
 		h2 {
 			font-size: 2em;
+			&::before {
+				content: "# ";
+				color: #4a8576;
+			}
 		}
 		h3 {
 			font-size: 1.5em;
+			&::before {
+				content: "## ";
+				color: #4a8576;
+			}
 		}
 		hr {
 			border: none;

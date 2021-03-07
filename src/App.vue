@@ -38,6 +38,20 @@ a {
 	color: #333;
 	text-decoration: none;
 }
+
+@media print {
+	.container {
+		padding: 0;
+		&::before {
+			display: none;
+		}
+	}
+
+	@page {
+		margin: 1cm;
+	}
+}
+
 .container {
 	min-height: var(--app-height, 100vh);
 	display: flex;
