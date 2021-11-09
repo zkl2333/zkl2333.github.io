@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@types/marked": "^4.0.0",
-		"marked": "^2.0.0",
+		"marked": "^4.0.0",
 		"vue": "^3.2.21",
 		"vue-router": "4"
 	},

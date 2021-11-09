@@ -27,7 +27,7 @@
 	</div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import logo from "@/assets/logo.jpeg";
 export default {
 	setup() {

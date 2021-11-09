@@ -11,7 +11,7 @@
 	</div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { marked } from "marked";
 import resume from "@/assets/张克凌-前端工程师.md?raw";
 
