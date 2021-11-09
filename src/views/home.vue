@@ -2,7 +2,7 @@
 	<div id="main">
 		<img id="logo" :src="logo" />
 		<router-link to="/resume">
-			<div class="button" @click="showResume">查看简历</div>
+			<div class="button">查看简历</div>
 		</router-link>
 		<div id="dis">
 			<p>你好，很高兴见到你</p>
@@ -12,19 +12,23 @@
 		<nav>
 			<ul id="group-logo">
 				<li v-for="icon in icons" :key="icon.url">
-					<a :href="icon.url"><i :class="icon.iconfont" /></a>
+					<a :href="icon.url">
+						<i :class="icon.iconfont" />
+					</a>
 				</li>
 			</ul>
 		</nav>
 		<footer>
-			<i class="fa fa-copyright"></i><b>zkl2333 2017-2021</b><br />
+			<i class="fa fa-copyright"></i>
+			<b>zkl2333 2017-2021</b>
+			<br />
 			<a href="https://beian.miit.gov.cn">浙ICP备17004361号-1</a>
 		</footer>
 	</div>
 </template>
 
-<script>
-import logo from '@/assets/logo.jpeg'
+<script lang='ts'>
+import logo from "@/assets/logo.jpeg";
 export default {
 	setup() {
 		const icons = [
@@ -46,7 +50,7 @@ export default {
 				iconfont: "fa fa-weibo",
 			},
 		];
-		return {logo, icons };
+		return { logo, icons };
 	},
 };
 </script>

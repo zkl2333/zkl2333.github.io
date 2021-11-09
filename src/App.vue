@@ -4,6 +4,10 @@
 	</div>
 </template>
 
+<script lang="ts">
+export default {};
+</script>
+
 <style lang="scss">
 .button {
 	transition: all 0.1s ease-in;
@@ -53,7 +57,7 @@ a {
 }
 
 .container {
-	min-height: var(--app-height, 100vh);
+	min-height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;

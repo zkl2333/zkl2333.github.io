@@ -11,14 +11,16 @@
 	</div>
 </template>
 
-<script>
-import resume from "@/assets/张克凌-前端工程师.md";
+<script lang='ts'>
+import { marked } from "marked";
+import resume from "@/assets/张克凌-前端工程师.md?raw";
+
 export default {
 	setup() {
 		function print() {
 			window.print();
 		}
-		return { resume, print };
+		return { resume: marked(resume as string), print };
 	},
 };
 </script>
