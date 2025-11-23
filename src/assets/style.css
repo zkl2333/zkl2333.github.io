@@ -1,19 +1,17 @@
-html {
-	user-select: none;
-}
+@import "tailwindcss";
 
-body {
-	margin: 0;
-}
+@layer base {
+	html {
+		@apply antialiased;
+	}
 
-body,
-html,
-#app {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	height: 100%;
+	body {
+		@apply m-0 text-gray-900 bg-gray-50;
+	}
+
+	body,
+	html,
+	#app {
+		@apply m-0 p-0 h-full;
+	}
 }

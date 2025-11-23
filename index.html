@@ -1,30 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh-hans">
-	<head>
-		<meta charset="UTF-8" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>多吃点的小饭桌</title>
-		<script>
-			if (
-				!(
-					location.hostname === "home.zkl2333.com" ||
-					location.hostname === "localhost" ||
-					/^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$/.test(
-						location.hostname
-					)
-				)
-			) {
-				location.assign("//home.zkl2333.com");
-			}
-		</script>
-		<link
-			href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-			rel="stylesheet"
-		/>
-	</head>
-	<body>
-		<div id="app"></div>
-		<script type="module" src="/src/main.ts"></script>
-	</body>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="zkl2333的个人主页 - 前端开发工程师" />
+    <meta name="keywords" content="zkl2333,多吃点,前端开发,个人主页" />
+    <meta name="author" content="zkl2333" />
+    <title>多吃点的小饭桌</title>
+    <script>
+      // Redirect to primary domain if not on allowed hosts
+      if (
+        !(
+          location.hostname === "home.zkl2333.com" ||
+          location.hostname === "localhost" ||
+          /^((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}$/.test(
+            location.hostname
+          )
+        )
+      ) {
+        location.assign("//home.zkl2333.com");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
+

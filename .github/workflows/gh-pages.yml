@@ -1,27 +1,49 @@
-name: gh-pages
+name: Deploy to GitHub Pages
+
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: 迁出代码
-              uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: 安装依赖以及编译
-              run: |
-                  yarn
-                  yarn build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-            - name: fix 单页应用路由问题
-              run: cp ./dist/index.html ./dist/404.html
+      - name: Install dependencies
+        run: npm ci
 
-            - name: 部署
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./dist
-                  publish_branch: gh-pages # deploying branch
-                  CNAME: zkl2333.com
+      - name: Build application
+        run: npm run build
+
+      - name: Fix SPA routing issue
+        run: cp ./dist/index.html ./dist/404.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          cname: zkl2333.com
+
