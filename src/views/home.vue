@@ -125,7 +125,7 @@ const handleMouseLeave = () => {
 onMounted(() => {
     fetchProjects()
     window.addEventListener('mousemove', handleMouseMove)
-    
+
     // 尝试获取更快的头像镜像
     getFastestGravatar(email, 128, 'identicon').then(url => {
         avatarUrl.value = url
@@ -220,7 +220,7 @@ const getLangColor = (lang: string) => {
                     style="animation-delay: 0.1s;">
 
                     <!-- Left Column: Avatar & Greeting -->
-                    <div class="flex flex-col items-center gap-5 shrink-0">
+                    <div class="flex flex-col items-center shrink-0">
                         <!-- Avatar with subtle ring -->
                         <div class="relative group/avatar">
                             <div
@@ -239,11 +239,11 @@ const getLangColor = (lang: string) => {
                             </div>
                         </div>
 
-                        <!-- Greeting Bubble -->
+                        <!-- Greeting Bubble (Flow Layout) -->
                         <div
-                            class="relative px-4 py-2 rounded-xl bg-white border border-white/50 text-slate-700 text-xs font-medium tracking-wide shadow-sm backdrop-blur-md cursor-default max-w-[200px] text-center transform transition-transform hover:scale-105 whitespace-nowrap">
+                            class="relative mt-6 px-4 py-2 rounded-xl bg-white/80 border border-white/50 text-slate-700 text-xs font-medium tracking-wide shadow-sm backdrop-blur-md cursor-default text-center transform transition-transform hover:scale-105 whitespace-nowrap">
                             <div
-                                class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-t border-l border-white/50 transform rotate-45">
+                                class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white/80 border-t border-l border-white/50 transform rotate-45">
                             </div>
                             {{ greeting }}
                         </div>
@@ -286,8 +286,8 @@ const getLangColor = (lang: string) => {
                         <div v-for="i in 6" :key="i" class="h-32 rounded-2xl bg-white/20 animate-pulse"></div>
                     </div>
                     <div v-else-if="error" class="flex flex-col items-center justify-center py-8 text-gray-500 gap-2">
-                         <Icon icon="tabler:mood-sad" class="w-8 h-8 opacity-60" />
-                         <p class="text-sm">暂时无法获取项目列表</p>
+                        <Icon icon="tabler:mood-sad" class="w-8 h-8 opacity-60" />
+                        <p class="text-sm">暂时无法获取项目列表</p>
                     </div>
                     <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <a v-for="project in projects" :key="project.name" :href="project.html_url" target="_blank"
