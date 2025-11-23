@@ -200,7 +200,7 @@ const getLangColor = (lang: string) => {
 
             <!-- Liquid Glass Card -->
             <div ref="cardRef"
-                class="liquid-card group relative p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-4 md:mx-0"
+                class="liquid-card group relative p-6 md:p-12 rounded-4xl md:rounded-[2.5rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-4 md:mx-0"
                 @mouseleave="handleMouseLeave">
 
                 <!-- Dynamic Spotlight -->
@@ -252,7 +252,7 @@ const getLangColor = (lang: string) => {
                     <!-- Intro Text -->
                     <div class="text-center md:text-left space-y-2">
                         <h1
-                            class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-gray-900 to-gray-600 tracking-tight pb-1 md:pb-2 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition-all duration-500 cursor-default">
+                            class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-linear-to-br from-gray-900 to-gray-600 tracking-tight pb-1 md:pb-2 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 transition-all duration-500 cursor-default">
                             多吃点
                         </h1>
                         <p class="text-base md:text-lg text-gray-600 font-medium">
@@ -294,7 +294,7 @@ const getLangColor = (lang: string) => {
                             class="relative p-6 rounded-2xl bg-white/40 border border-white/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 group/card flex flex-col h-full backdrop-blur-sm overflow-hidden">
                             <!-- Card Hover Gradient -->
                             <div
-                                class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                                class="absolute inset-0 bg-linear-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
                             </div>
 
                             <div class="relative z-10 flex items-center justify-between mb-3">
@@ -308,7 +308,7 @@ const getLangColor = (lang: string) => {
                             </div>
                             <h3 class="relative z-10 font-bold text-gray-800 mb-2 group-hover/card:text-blue-600 transition-colors truncate"
                                 :title="project.name">{{ project.name }}</h3>
-                            <p class="relative z-10 text-xs text-gray-500 line-clamp-2 mb-4 flex-grow leading-relaxed">
+                            <p class="relative z-10 text-xs text-gray-500 line-clamp-2 mb-4 grow leading-relaxed">
                                 {{ project.description }}</p>
                             <div class="relative z-10 flex items-center gap-2 mt-auto">
                                 <span class="w-2 h-2 rounded-full ring-2 ring-white/50"
@@ -327,7 +327,7 @@ const getLangColor = (lang: string) => {
                         class="relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/40 border border-white/50 text-gray-500 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 group/btn backdrop-blur-md overflow-hidden"
                         :class="link.color">
                         <div
-                            class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover/btn:opacity-100 transform -translate-x-full group-hover/btn:translate-x-full transition-all duration-700">
+                            class="absolute inset-0 bg-linear-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover/btn:opacity-100 transform -translate-x-full group-hover/btn:translate-x-full transition-all duration-700">
                         </div>
                         <Icon :icon="link.icon"
                             class="w-6 h-6 transition-transform group-hover/btn:scale-110 relative z-10" />
