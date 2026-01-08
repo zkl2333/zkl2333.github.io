@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
 
-const GRAVATAR_MIRRORS = [
+export const GRAVATAR_MIRRORS = [
   'https://cn.cravatar.com/avatar/',
   'https://www.gravatar.com/avatar/',
   'https://weavatar.com/avatar/'
@@ -9,7 +9,7 @@ const GRAVATAR_MIRRORS = [
 /**
  * 生成 Gravatar hash
  */
-function getHash(email: string): string {
+export function getHash(email: string): string {
   return CryptoJS.MD5(email.trim().toLowerCase()).toString()
 }
 

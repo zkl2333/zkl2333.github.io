@@ -4,9 +4,10 @@
 	"description": "zkl2333的个人主页",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview"
+		"dev": "npm run generate:icons && vite",
+		"build": "npm run generate:icons && vite build",
+		"preview": "vite preview",
+		"generate:icons": "tsx scripts/generate-icons.ts"
 	},
 	"dependencies": {
 		"@iconify/vue": "^4.1.2",
@@ -21,7 +22,9 @@
 		"@iconify-json/tabler": "^1.2.9",
 		"@types/crypto-js": "^4.2.2",
 		"@types/node": "^22.10.1",
-		"@vitejs/plugin-vue": "^5.2.1",
+		"@vitejs/plugin-vue": "^6.0.3",
+		"sharp": "^0.34.5",
+		"tsx": "^4.21.0",
 		"typescript": "^5.7.2",
 		"unplugin-icons": "^0.20.2",
 		"vite": "^7.2.4"
@@ -35,5 +38,8 @@
 	"bugs": {
 		"url": "https://github.com/zkl2333/zkl2333.github.io/issues"
 	},
-	"homepage": "https://github.com/zkl2333/zkl2333.github.io#readme"
+	"homepage": "https://github.com/zkl2333/zkl2333.github.io#readme",
+	"volta": {
+		"node": "24.12.0"
+	}
 }
