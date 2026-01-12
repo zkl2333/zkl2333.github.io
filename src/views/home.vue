@@ -49,16 +49,36 @@ interface Repo {
     html_url: string
 }
 
+interface PullRequest {
+    title: string
+    html_url: string
+    created_at: string
+    state: string
+}
+
+interface ContributionRepo {
+    repo_name: string
+    repo_full_name: string
+    repo_url: string
+    description: string
+    stars: number
+    prs: PullRequest[]
+}
+
 const projects = ref<Repo[]>([])
+const contributions = ref<ContributionRepo[]>([])
 const loading = ref(true)
 const error = ref(false)
 const isProjectsExpanded = ref(false)
+const isContributionsExpanded = ref(false)
 
 const fetchProjects = async () => {
     try {
         const res = await fetch('https://api.github.com/users/zkl2333/repos?sort=pushed&direction=desc')
         if (!res.ok) throw new Error('Failed to fetch')
         const data: any[] = await res.json()
+
+        console.log('Fetched projects:', data.length)
 
         // Filter out forks & archived repos, then sort by stars
         projects.value = data
@@ -75,8 +95,72 @@ const fetchProjects = async () => {
     } catch (e) {
         console.error('GitHub API fetch failed', e)
         error.value = true
-    } finally {
-        loading.value = false
+    }
+}
+
+const fetchContributions = async () => {
+    try {
+        // 获取 PR 列表
+        const res = await fetch('https://api.github.com/search/issues?q=author:zkl2333+type:pr+-user:zkl2333&sort=created&order=desc&per_page=50')
+
+        if (!res.ok) throw new Error('Failed to fetch')
+
+        const data = await res.json()
+
+        // 按仓库分组
+        const repoMap = new Map<string, { prs: any[], repoUrl: string }>()
+        ;(data.items || []).forEach((item: any) => {
+            const repoUrl = item.repository_url
+            if (!repoMap.has(repoUrl)) {
+                repoMap.set(repoUrl, { prs: [], repoUrl })
+            }
+            repoMap.get(repoUrl)!.prs.push(item)
+        })
+
+        // 批量获取仓库信息
+        const repoPromises = Array.from(repoMap.keys()).map(async (repoUrl) => {
+            try {
+                const res = await fetch(repoUrl)
+                if (res.ok) {
+                    const repoData = await res.json()
+                    return { 
+                        repoUrl, 
+                        stars: repoData.stargazers_count, 
+                        fullName: repoData.full_name,
+                        description: repoData.description || 'No description provided.'
+                    }
+                }
+            } catch (e) {
+                console.error(`Failed to fetch repo ${repoUrl}`, e)
+            }
+            return { repoUrl, stars: 0, fullName: '', description: '' }
+        })
+
+        const repoInfos = await Promise.all(repoPromises)
+        const repoStarsMap = new Map(repoInfos.map(r => [r.repoUrl, r]))
+
+        // 组合数据
+        const contributionList: ContributionRepo[] = Array.from(repoMap.entries()).map(([repoUrl, { prs }]) => {
+            const repoInfo = repoStarsMap.get(repoUrl)
+            return {
+                repo_name: repoUrl.split('/').pop() || '',
+                repo_full_name: repoInfo?.fullName || repoUrl.replace('https://api.github.com/repos/', ''),
+                repo_url: repoUrl.replace('api.github.com/repos', 'github.com'),
+                description: repoInfo?.description || 'No description provided.',
+                stars: repoInfo?.stars || 0,
+                prs: prs.map((pr: any) => ({
+                    title: pr.title,
+                    html_url: pr.html_url,
+                    created_at: pr.created_at,
+                    state: pr.pull_request?.merged_at ? 'MERGED' : pr.state === 'open' ? 'OPEN' : 'CLOSED'
+                }))
+            }
+        })
+
+        // 按仓库 star 数排序，取前 6 个仓库
+        contributions.value = contributionList.sort((a, b) => b.stars - a.stars).slice(0, 6)
+    } catch (e) {
+        console.error('GitHub contributions fetch failed', e)
     }
 }
 
@@ -123,7 +207,17 @@ const handleMouseLeave = () => {
 }
 
 onMounted(() => {
-    fetchProjects()
+    // 并行加载所有数据
+    Promise.all([fetchProjects(), fetchContributions()])
+        .then(() => {
+            loading.value = false
+        })
+        .catch((e) => {
+            console.error('Data fetch error:', e)
+            error.value = true
+            loading.value = false
+        })
+
     window.addEventListener('mousemove', handleMouseMove)
 
     // 尝试获取更快的头像镜像
@@ -318,6 +412,86 @@ const getLangColor = (lang: string) => {
                             </div>
                         </a>
                     </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="relative z-10 my-8 animate-fade-up" style="animation-delay: 0.22s;">
+                    <div class="flex items-center gap-4">
+                        <div class="flex-1 h-px bg-linear-to-r from-transparent via-gray-300/50 to-transparent"></div>
+                        <div class="px-4 py-1.5 rounded-full bg-white/30 border border-white/40 text-xs font-medium text-gray-500 backdrop-blur-sm">
+                            开源贡献
+                        </div>
+                        <div class="flex-1 h-px bg-linear-to-r from-transparent via-gray-300/50 to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Open Source Contributions -->
+                <div class="mb-8 md:mb-12 relative z-10 animate-fade-up transition-all duration-500 ease-in-out"
+                    :class="[isContributionsExpanded ? 'opacity-100 max-h-[5000px]' : 'max-h-0 opacity-0 overflow-hidden md:max-h-none md:opacity-100 md:overflow-visible']"
+                    style="animation-delay: 0.25s;">
+                    <div v-if="contributions.length > 0" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div v-for="repo in contributions" :key="repo.repo_url"
+                            class="relative p-6 rounded-2xl bg-white/40 border border-white/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 group/card flex flex-col backdrop-blur-sm overflow-hidden">
+                            
+                            <!-- Card Hover Gradient -->
+                            <div
+                                class="absolute inset-0 bg-linear-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                            </div>
+
+                            <!-- 仓库头部 -->
+                            <div class="relative z-10 flex items-center justify-between mb-3">
+                                <Icon icon="tabler:brand-github"
+                                    class="w-5 h-5 text-purple-500/80 group-hover/card:text-purple-600 transition-colors transform group-hover/card:scale-110 duration-300" />
+                                <div
+                                    class="flex items-center gap-1 text-xs font-medium text-gray-500 bg-white/30 px-2 py-0.5 rounded-full group-hover/card:bg-white/50 transition-colors">
+                                    <Icon icon="tabler:star" class="w-3 h-3 text-amber-400 fill-amber-400" />
+                                    {{ repo.stars }}
+                                </div>
+                            </div>
+                            
+                            <a :href="repo.repo_url" target="_blank">
+                                <h3 class="relative z-10 font-bold text-gray-800 mb-2 group-hover/card:text-purple-600 transition-colors truncate"
+                                    :title="repo.repo_full_name">{{ repo.repo_full_name }}</h3>
+                            </a>
+                            
+                            <p class="relative z-10 text-xs text-gray-500 line-clamp-2 mb-4 leading-relaxed">
+                                {{ repo.description }}</p>
+
+                            <!-- PR 列表 -->
+                            <div class="relative z-10 space-y-2 mb-4">
+                                <a v-for="pr in repo.prs.slice(0, 2)" :key="pr.html_url" :href="pr.html_url" target="_blank"
+                                    class="block p-2 rounded-lg hover:bg-white/40 transition-colors">
+                                    <div class="flex items-start gap-2">
+                                        <Icon v-if="pr.state === 'MERGED'" icon="pajamas:git-merge"
+                                              class="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
+                                        <Icon v-else-if="pr.state === 'OPEN'" icon="pajamas:git-pull-request"
+                                              class="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                                        <Icon v-else icon="pajamas:git-pull-request-closed"
+                                              class="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+                                        <p class="text-xs text-gray-700 line-clamp-1 leading-relaxed flex-1">{{ pr.title }}</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- 底部信息 -->
+                            <div class="relative z-10 flex items-center gap-2 mt-auto">
+                                <Icon icon="tabler:git-pull-request" class="w-3 h-3 text-gray-400" />
+                                <span class="text-[10px] text-gray-400 font-semibold tracking-wider">{{ repo.prs.length }} 个 PR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Toggle Contributions Button -->
+                <div class="md:hidden mb-6 flex justify-center relative z-10 animate-fade-up"
+                    style="animation-delay: 0.2s;">
+                    <button @click="isContributionsExpanded = !isContributionsExpanded"
+                        class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/40 border border-white/50 text-gray-600 text-sm font-medium shadow-sm hover:bg-white/60 active:scale-95 transition-all backdrop-blur-sm">
+                        <span v-if="!isContributionsExpanded">查看开源贡献</span>
+                        <span v-else>收起贡献列表</span>
+                        <Icon :icon="isContributionsExpanded ? 'tabler:chevron-up' : 'tabler:chevron-down'"
+                            class="w-4 h-4" />
+                    </button>
                 </div>
 
                 <!-- Social Links -->
