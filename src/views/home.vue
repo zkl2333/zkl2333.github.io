@@ -34,12 +34,12 @@ const isContributionsExpanded = ref(false);
 		<div
 			class="relative z-20 flex flex-col items-center justify-center min-h-screen p-4"
 		>
-			<!-- Liquid Glass Card -->
-			<div
-				ref="cardRef"
-				class="liquid-card group relative p-6 md:p-12 rounded-4xl md:rounded-[2.5rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-4 md:mx-0"
-				@mouseleave="handleMouseLeave"
-			>
+            <!-- Liquid Glass Card -->
+            <div
+                ref="cardRef"
+                class="liquid-card group relative p-6 md:p-12 rounded-3xl md:rounded-[3rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-4 md:mx-0 ring-1 ring-white/40"
+                @mouseleave="handleMouseLeave"
+            >
 				<!-- Dynamic Spotlight -->
 				<div
 					class="pointer-events-none absolute -inset-px opacity-0 transition duration-300"

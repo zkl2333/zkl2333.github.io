@@ -4,7 +4,7 @@
 	"description": "zkl2333的个人主页",
 	"type": "module",
 	"scripts": {
-		"dev": "npm run generate:icons && vite",
+		"dev": "vite",
 		"build": "npm run generate:icons && vite build",
 		"preview": "vite preview",
 		"generate:icons": "tsx scripts/generate-icons.ts",

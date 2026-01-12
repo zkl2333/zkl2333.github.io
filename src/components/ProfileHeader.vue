@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
 import { getFastestGravatar } from '@/utils/gravatar'
 import { ref, onMounted } from 'vue'
 import { useGreeting } from '@/composables/useGreeting'
@@ -10,63 +9,84 @@ const avatarUrl = ref('')
 const { greeting } = useGreeting()
 
 onMounted(() => {
-    // 初始头像
-    avatarUrl.value = `https://www.gravatar.com/avatar/${email}?s=128&d=identicon`
-    // 尝试获取更快的头像镜像
-    getFastestGravatar(email, 128, 'identicon').then(url => {
+    avatarUrl.value = `https://www.gravatar.com/avatar/${email}?s=256&d=identicon`
+    getFastestGravatar(email, 256, 'identicon').then(url => {
         avatarUrl.value = url
     })
 })
 </script>
 
 <template>
-    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-8 md:mb-12 relative z-10 animate-fade-up"
+    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 mb-12 md:mb-16 relative z-10 animate-fade-up"
         style="animation-delay: 0.1s;">
 
-        <!-- Left Column: Avatar & Greeting -->
-        <div class="flex flex-col items-center shrink-0">
-            <!-- Avatar with subtle ring -->
-            <div class="relative group/avatar">
-                <div
-                    class="w-28 h-28 md:w-40 md:h-40 rounded-full p-1.5 bg-white/30 backdrop-blur-md shadow-xl ring-1 ring-white/50 transition-transform duration-500 group-hover/avatar:scale-105">
-                    <img :src="avatarUrl" alt="Avatar"
-                        class="w-full h-full rounded-full object-cover shadow-inner">
-                </div>
-                <div
-                    class="absolute -bottom-2 -right-2 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-medium shadow-lg border border-white flex items-center gap-1.5 text-gray-600 group-hover/avatar:scale-110 transition-transform duration-300">
-                    <span class="relative flex h-2 w-2">
-                        <span
-                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    Online
-                </div>
+        <!-- Left Column: Avatar (Visual Anchor) -->
+        <div class="relative shrink-0 group">
+            <!-- Decorative Glow Behind -->
+            <div
+                class="absolute -inset-4 bg-gradient-to-tr from-cyan-400/20 to-purple-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             </div>
 
-            <!-- Greeting Bubble (Flow Layout) -->
-            <div
-                class="relative mt-6 px-4 py-2 rounded-xl bg-white/80 border border-white/50 text-slate-700 text-xs font-medium tracking-wide shadow-sm backdrop-blur-md cursor-default text-center transform transition-transform hover:scale-105 whitespace-nowrap">
+            <!-- Avatar Container -->
+            <div class="relative w-40 h-40 md:w-52 md:h-52">
                 <div
-                    class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white/80 border-t border-l border-white/50 transform rotate-45">
+                    class="w-full h-full rounded-full p-1.5 bg-white/30 backdrop-blur-md shadow-2xl ring-1 ring-white/50 transition-transform duration-500 group-hover:scale-[1.02] group-hover:rotate-2">
+                    <img :src="avatarUrl" alt="Avatar"
+                        class="w-full h-full rounded-full object-cover shadow-inner bg-gray-100">
                 </div>
-                {{ greeting }}
+
+                <!-- Status Badge -->
+                <div
+                    class="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold shadow-lg border border-white/60 flex items-center gap-2 text-gray-700 transition-transform duration-300 group-hover:scale-110">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span>Online</span>
+                </div>
             </div>
         </div>
 
-        <!-- Intro Text -->
-        <div class="text-center md:text-left space-y-2">
-            <h1
-                class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-linear-to-br from-gray-900 to-gray-600 tracking-tight pb-1 md:pb-2 hover:bg-linear-to-r hover:from-blue-600 hover:to-purple-600 transition-all duration-500 cursor-default">
+        <!-- Right Column: Content (Typography) -->
+        <div class="flex-1 text-center md:text-left flex flex-col items-center md:items-start">
+            
+            <!-- 1. Intro / Greeting (Editorial Style) -->
+            <div class="mb-2 md:mb-1 relative overflow-hidden">
+                <span class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-gray-500/90 pl-1">
+                    {{ greeting }}
+                </span>
+            </div>
+
+            <!-- 2. Name (Massive & Tight) -->
+            <h1 class="text-6xl md:text-8xl font-black text-gray-900 tracking-tighter leading-[0.9] mb-6 md:mb-8 drop-shadow-sm">
                 多吃点
             </h1>
-            <p class="text-base md:text-lg text-gray-600 font-medium">
-                @zkl2333 <span class="text-sm opacity-60 block md:inline mt-0.5 md:mt-0">·
-                    一个热爱生活的可爱男孩</span>
-            </p>
-            <p class="text-sm text-gray-500 max-w-md leading-normal">
-                写写前端、折腾点代码，也会做些小工具玩玩
-                <br class="hidden md:block"> 奶茶咖啡轮着喝☕，馋了就点炸鸡火锅牛排烧烤 🍗🥩
-            </p>
+
+            <!-- 3. Bio & Details (Clean Layout) -->
+            <div class="space-y-3 md:space-y-4 max-w-lg">
+                <!-- ID & Tagline -->
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-base md:text-xl font-medium text-gray-800">
+                    <span class="font-mono text-cyan-600/90">@zkl2333</span>
+                    <span class="hidden md:inline w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                    <span>一个热爱生活的可爱男孩</span>
+                </div>
+
+                <!-- Description -->
+                <p class="text-sm md:text-base text-gray-500 leading-relaxed font-medium">
+                    写写前端、折腾点代码，也会做些小工具玩玩
+                    <br class="hidden md:block" />
+                    <span class="inline-flex items-center gap-1.5 mt-1 md:mt-1.5 opacity-80">
+                        <span>奶茶咖啡轮着喝 ☕</span>
+                        <span class="w-1 h-1 rounded-full bg-gray-400"></span>
+                        <span>馋了就点炸鸡火锅 🍗</span>
+                    </span>
+                </p>
+            </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+/* Optional: Add a very subtle text gradient if needed, but solid usually looks cleaner for this style */
+</style>
