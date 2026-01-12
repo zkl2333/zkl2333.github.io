@@ -1,0 +1,44 @@
+[
+  {
+    "name": "MR-Extension",
+    "description": "用户在使用 Movie Bot 这款自动化工具时往往需要手动抓包获取 cookies，我开发了这款插件简化了这个流程。",
+    "stargazers_count": 93,
+    "language": "Vue",
+    "html_url": "https://github.com/zkl2333/MR-Extension"
+  },
+  {
+    "name": "vme",
+    "description": "一个社区驱动的肯德基疯狂星期四段子分享平台，让每个星期四都充满欢乐！",
+    "stargazers_count": 32,
+    "language": "TypeScript",
+    "html_url": "https://github.com/zkl2333/vme"
+  },
+  {
+    "name": "aida64-to-json",
+    "description": "当设置aida64将传感器数据写入注册表时，读取注册表中的传感器参数并格式化",
+    "stargazers_count": 19,
+    "language": "JavaScript",
+    "html_url": "https://github.com/zkl2333/aida64-to-json"
+  },
+  {
+    "name": "git-for-windows-zh",
+    "description": "Git for Windows 汉化包",
+    "stargazers_count": 15,
+    "language": "Shell",
+    "html_url": "https://github.com/zkl2333/git-for-windows-zh"
+  },
+  {
+    "name": "rc-esp",
+    "description": "基于 ESP-8266 的遥控小车",
+    "stargazers_count": 3,
+    "language": "C++",
+    "html_url": "https://github.com/zkl2333/rc-esp"
+  },
+  {
+    "name": "config-updater",
+    "description": "极简通用配置自动更新服务",
+    "stargazers_count": 2,
+    "language": "Rust",
+    "html_url": "https://github.com/zkl2333/config-updater"
+  }
+]
