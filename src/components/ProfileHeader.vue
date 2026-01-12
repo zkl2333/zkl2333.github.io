@@ -37,7 +37,7 @@ onMounted(() => {
 
                 <!-- Status Badge -->
                 <div
-                    class="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold shadow-lg border border-white/60 flex items-center gap-2 text-gray-700 transition-transform duration-300 group-hover:scale-110">
+                    class="absolute bottom-1 right-2 md:bottom-2 md:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold shadow-lg border border-white/60 flex items-center gap-2 text-gray-700 transition-transform duration-300 group-hover:scale-110">
                     <span class="relative flex h-2.5 w-2.5">
                         <span
                             class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
