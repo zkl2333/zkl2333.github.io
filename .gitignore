@@ -3,3 +3,7 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# GitHub Actions 生成的数据文件（只在构建时使用，不提交到源码）
+public/data/*.json
+public/data/meta.json
