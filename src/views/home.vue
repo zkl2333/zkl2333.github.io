@@ -25,7 +25,7 @@ const { blobs, spotlight, cardRef, handleMouseLeave } =
 		<AnimatedBackground :blobs="blobs" />
 
 		<div
-			class="relative z-20 flex flex-col items-center justify-center min-h-screen p-4"
+			class="relative z-20 flex flex-col items-center justify-center min-h-screen p-4 safe-area-container"
 		>
             <!-- Liquid Glass Card -->
             <div
@@ -152,5 +152,11 @@ const { blobs, spotlight, cardRef, handleMouseLeave } =
 	to {
 		opacity: 1;
 	}
+}
+
+/* 安全区域优化 */
+.safe-area-container {
+	padding-left: max(1rem, env(safe-area-inset-left));
+	padding-right: max(1rem, env(safe-area-inset-right));
 }
 </style>
