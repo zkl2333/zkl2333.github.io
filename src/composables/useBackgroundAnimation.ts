@@ -48,12 +48,26 @@ export const useBackgroundAnimation = () => {
         spotlight.opacity = 0
     }
 
+    /**
+     * 检测是否为移动设备
+     */
+    const isMobileDevice = () => {
+        return window.matchMedia('(pointer: coarse)').matches || 
+               'ontouchstart' in window ||
+               navigator.maxTouchPoints > 0
+    }
+
     onMounted(() => {
-        window.addEventListener('mousemove', handleMouseMove)
+        // 只在非移动设备上启用鼠标追踪
+        if (!isMobileDevice()) {
+            window.addEventListener('mousemove', handleMouseMove)
+        }
     })
 
     onUnmounted(() => {
-        window.removeEventListener('mousemove', handleMouseMove)
+        if (!isMobileDevice()) {
+            window.removeEventListener('mousemove', handleMouseMove)
+        }
     })
 
     return {
