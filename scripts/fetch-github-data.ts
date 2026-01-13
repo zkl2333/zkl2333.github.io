@@ -66,7 +66,7 @@ interface MetaData {
 }
 
 /**
- * 封装GitHub API请求，自动处理认证和错误
+ * 封装 GitHub API 请求，自动处理认证和错误
  */
 async function ghRequest<T>(url: string): Promise<{ data: T; headers: Headers }> {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
@@ -100,10 +100,10 @@ function getRateLimitInfo(headers: Headers) {
 }
 
 /**
- * 获取GitHub项目列表
+ * 获取 GitHub 项目列表
  */
 async function fetchProjects(): Promise<Project[]> {
-  console.log(`Fetching repos for ${OWNER}...`);
+  console.log(`正在获取 ${OWNER} 的项目列表...`);
 
   const { data: repos, headers } = await ghRequest<GitHubRepo[]>(
     `https://api.github.com/users/${OWNER}/repos?sort=pushed&direction=desc&per_page=100`
@@ -115,13 +115,13 @@ async function fetchProjects(): Promise<Project[]> {
     .slice(0, TOP_COUNT)
     .map((repo) => ({
       name: repo.name,
-      description: repo.description || "No description provided.",
+      description: repo.description || "暂无描述",
       stargazers_count: repo.stargazers_count,
       language: repo.language || "Code",
       html_url: repo.html_url,
     }));
 
-  console.log(`Fetched ${projects.length} projects`);
+  console.log(`✓ 已获取 ${projects.length} 个项目`);
 
   // 更新rate limit信息
   if (!rateLimit) {
@@ -132,17 +132,17 @@ async function fetchProjects(): Promise<Project[]> {
 }
 
 /**
- * 获取GitHub贡献数据
+ * 获取 GitHub 贡献数据
  */
 async function fetchContributions(): Promise<ContributionRepo[]> {
-  console.log(`Fetching contributions for ${OWNER}...`);
+  console.log(`正在获取 ${OWNER} 的开源贡献...`);
 
-  // 获取PR列表
+  // 获取 PR 列表
   const { data: searchResult, headers: searchHeaders } = await ghRequest<{ items: GitHubPullRequest[] }>(
     `https://api.github.com/search/issues?q=author:${OWNER}+type:pr+-user:${OWNER}&sort=created&order=desc&per_page=50`
   );
 
-  // 更新rate limit信息（search API有独立的rate limit）
+  // 更新rate limit信息（search API 有独立的 rate limit）
   if (!rateLimit) {
     rateLimit = getRateLimitInfo(searchHeaders);
   }
@@ -159,9 +159,9 @@ async function fetchContributions(): Promise<ContributionRepo[]> {
     repoMap.get(repoUrl)!.push(item);
   });
 
-  console.log(`Found PRs from ${repoMap.size} repositories`);
+  console.log(`在 ${repoMap.size} 个仓库中找到了 PR`);
 
-  // 批量获取仓库信息（只获取需要展示的仓库）
+  // 批量获取仓库信息
   const repoPromises = Array.from(repoMap.keys()).map(async (repoUrl) => {
     try {
       const { data: repoData } = await ghRequest<any>(repoUrl);
@@ -169,10 +169,10 @@ async function fetchContributions(): Promise<ContributionRepo[]> {
         repoUrl,
         stars: repoData.stargazers_count,
         fullName: repoData.full_name,
-        description: repoData.description || "No description provided.",
+        description: repoData.description || "暂无描述",
       };
     } catch (e) {
-      console.error(`Failed to fetch repo ${repoUrl}:`, e);
+      console.error(`获取仓库 ${repoUrl} 失败:`, e);
       return { repoUrl, stars: 0, fullName: "", description: "" };
     }
   });
@@ -187,7 +187,7 @@ async function fetchContributions(): Promise<ContributionRepo[]> {
       repo_name: repoUrl.split("/").pop() || "",
       repo_full_name: repoInfo?.fullName || repoUrl.replace("https://api.github.com/repos/", ""),
       repo_url: repoUrl.replace("api.github.com/repos", "github.com"),
-      description: repoInfo?.description || "No description provided.",
+      description: repoInfo?.description || "暂无描述",
       stars: repoInfo?.stars || 0,
       prs: prs.map((pr) => ({
         title: pr.title,
@@ -198,9 +198,8 @@ async function fetchContributions(): Promise<ContributionRepo[]> {
     };
   });
 
-  // 按仓库star数排序，取前6个
   const sorted = contributionList.sort((a, b) => b.stars - a.stars).slice(0, TOP_COUNT);
-  console.log(`Top ${sorted.length} contributions repositories by stars`);
+  console.log(`按 star 数排序，获取前 ${sorted.length} 个贡献仓库`);
   return sorted;
 }
 
@@ -209,46 +208,41 @@ async function fetchContributions(): Promise<ContributionRepo[]> {
  */
 async function main() {
   try {
-    console.log("Starting GitHub data fetch...");
-    console.log(`Output directory: ${OUT_DIR}`);
+    console.log("开始获取 GitHub 数据...");
+    console.log(`输出目录: ${OUT_DIR}`);
 
     // 创建输出目录
     await mkdir(OUT_DIR, { recursive: true });
 
-    // 获取rate limit信息（在第一次请求后）
-    let rateLimit: MetaData["rate_limit"];
-
-    // 并行获取所有数据
+    // 并行加载所有数据
     const [projects, contributions] = await Promise.all([
       fetchProjects(),
       fetchContributions(),
     ]);
 
-    // 保存数据到JSON文件
+    // 保存数据到 JSON 文件
     const projectsPath = path.join(OUT_DIR, "projects.json");
     const contributionsPath = path.join(OUT_DIR, "contributions.json");
     const metaPath = path.join(OUT_DIR, "meta.json");
 
     await writeFile(projectsPath, JSON.stringify(projects, null, 2), "utf-8");
-    console.log(`✓ Saved projects to ${projectsPath}`);
+    console.log(`✓ 项目列表已保存到 ${projectsPath}`);
 
     await writeFile(contributionsPath, JSON.stringify(contributions, null, 2), "utf-8");
-    console.log(`✓ Saved contributions to ${contributionsPath}`);
+    console.log(`✓ 贡献列表已保存到 ${contributionsPath}`);
 
-    // 保存元数据
-    const meta: MetaData = {
+    await writeFile(metaPath, JSON.stringify({
       generated_at: new Date().toISOString(),
       source: "github-actions",
       ...(rateLimit ? { rate_limit: rateLimit } : {}),
-    };
-    await writeFile(metaPath, JSON.stringify(meta, null, 2), "utf-8");
-    console.log(`✓ Saved meta to ${metaPath}`);
+    }, null, 2), "utf-8");
+    console.log(`✓ 元数据已保存到 ${metaPath}`);
 
-    console.log("\n✅ Data fetch completed successfully!");
-    console.log(`   - ${projects.length} projects`);
-    console.log(`   - ${contributions.length} contribution repositories`);
+    console.log("\n✅ GitHub 数据获取完成！");
+    console.log(`   - ${projects.length} 个项目`);
+    console.log(`   - ${contributions.length} 个贡献仓库`);
   } catch (error) {
-    console.error("\n❌ Error during data fetch:", error);
+    console.error("\n❌ 数据获取失败:", error);
     process.exit(1);
   }
 }

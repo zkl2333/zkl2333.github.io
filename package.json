@@ -4,7 +4,7 @@
 	"description": "zkl2333的个人主页",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "npm run generate:icons && vite",
 		"build": "npm run generate:icons && vite build",
 		"preview": "vite preview",
 		"generate:icons": "tsx scripts/generate-icons.ts",
@@ -21,7 +21,6 @@
 	},
 	"devDependencies": {
 		"@iconify-json/tabler": "^1.2.9",
-		"@types/crypto-js": "^4.2.2",
 		"@types/node": "^22.10.1",
 		"@vitejs/plugin-vue": "^6.0.3",
 		"sharp": "^0.34.5",
