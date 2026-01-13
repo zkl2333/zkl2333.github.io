@@ -24,7 +24,7 @@ onMounted(() => {
         <div class="relative shrink-0 group">
             <!-- Decorative Glow Behind -->
             <div
-                class="absolute -inset-4 bg-gradient-to-tr from-cyan-400/20 to-purple-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                class="absolute -inset-4 bg-linear-to-tr from-cyan-400/20 to-purple-400/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
             </div>
 
             <!-- Avatar Container -->

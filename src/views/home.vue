@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { Icon } from "@iconify/vue";
 import { useGitHubData } from "@/composables/useGitHubData";
 import { useBackgroundAnimation } from "@/composables/useBackgroundAnimation";
 import { socialLinks } from "@/constants/social-links";
@@ -8,7 +6,6 @@ import AnimatedBackground from "@/components/AnimatedBackground.vue";
 import ProfileHeader from "@/components/ProfileHeader.vue";
 import ProjectCard from "@/components/ProjectCard.vue";
 import ContributionCard from "@/components/ContributionCard.vue";
-import MobileToggle from "@/components/MobileToggle.vue";
 import SocialLinks from "@/components/SocialLinks.vue";
 import PageFooter from "@/components/PageFooter.vue";
 
@@ -18,10 +15,6 @@ const { projects, contributions, loading, error } = useGitHubData();
 // 背景动画
 const { blobs, spotlight, cardRef, handleMouseLeave } =
 	useBackgroundAnimation();
-
-// 移动端展开状态
-const isProjectsExpanded = ref(false);
-const isContributionsExpanded = ref(false);
 </script>
 
 <template>
@@ -57,22 +50,10 @@ const isContributionsExpanded = ref(false);
 				<!-- Profile Header -->
 				<ProfileHeader />
 
-				<!-- Mobile Toggle Projects Button -->
-				<MobileToggle
-					v-model="isProjectsExpanded"
-					expand-text="查看我的项目"
-					collapse-text="收起项目列表"
-				/>
-
 				<!-- GitHub Projects Grid -->
 				<div
-					class="mb-8 md:mb-12 relative z-10 animate-fade-up transition-all duration-500 ease-in-out"
-					:class="[
-						isProjectsExpanded
-							? 'opacity-100 max-h-[2000px]'
-							: 'max-h-0 opacity-0 overflow-hidden md:max-h-none md:opacity-100 md:overflow-visible',
-					]"
-					style="animation-delay: 0.2s"
+					class="mb-8 md:mb-12 relative z-10 animate-fade-up"
+					style="animation-delay: 0.2s;"
 				>
 					<div
 						v-if="loading"
@@ -105,13 +86,8 @@ const isContributionsExpanded = ref(false);
 
 				<!-- Open Source Contributions -->
 				<div
-					class="mb-8 md:mb-12 relative z-10 animate-fade-up transition-all duration-500 ease-in-out"
-					:class="[
-						isContributionsExpanded
-							? 'opacity-100 max-h-[5000px]'
-							: 'max-h-0 opacity-0 overflow-hidden md:max-h-none md:opacity-100 md:overflow-visible',
-					]"
-					style="animation-delay: 0.25s"
+					class="mb-8 md:mb-12 relative z-10 animate-fade-up"
+					style="animation-delay: 0.25s;"
 				>
 					<div
 						v-if="contributions.length > 0"
@@ -124,13 +100,6 @@ const isContributionsExpanded = ref(false);
 						/>
 					</div>
 				</div>
-
-				<!-- Mobile Toggle Contributions Button -->
-				<MobileToggle
-					v-model="isContributionsExpanded"
-					expand-text="查看开源贡献"
-					collapse-text="收起贡献列表"
-				/>
 
 				<!-- Social Links -->
 				<SocialLinks :links="socialLinks" />
