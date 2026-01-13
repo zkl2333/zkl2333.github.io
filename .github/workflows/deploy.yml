@@ -1,18 +1,23 @@
-name: 部署到 GitHub Pages
+name: 更新数据并部署
 
 on:
+    # push 到 master 分支触发
     push:
         branches:
             - master
+    # 定时任务：每天 UTC 时间 19:00（北京时间凌晨 3:00）执行
+    schedule:
+        - cron: "0 19 * * *"
+    # 允许手动触发
     workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# 设置权限
 permissions:
     contents: write
     pages: write
     id-token: write
 
-# Allow one concurrent deployment
+# 只允许一个并发部署
 concurrency:
     group: "pages"
     cancel-in-progress: true
@@ -32,6 +37,13 @@ jobs:
 
             - name: 安装依赖
               run: npm ci
+
+            - name: 获取 GitHub 数据
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  npm run fetch-data
+                  npm run generate:icons
 
             - name: 构建应用
               run: npm run build
