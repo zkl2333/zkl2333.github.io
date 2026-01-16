@@ -22,9 +22,7 @@
 	}
 
 	body {
-		@apply m-0 text-gray-900;
-		/* 使用与主页面一致的背景色 */
-		background-color: #f0f2f5;
+		@apply m-0 text-gray-900 bg-[#F0F2F5];
 		/* 移动端安全区域支持 - 确保内容不被刘海/底部手势条遮挡 */
 		padding-top: max(env(safe-area-inset-top), 0.5rem);
 		padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
