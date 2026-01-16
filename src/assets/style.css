@@ -17,20 +17,58 @@
 @layer base {
 	html {
 		@apply antialiased;
+		/* 移动端平滑滚动优化 */
+		scroll-behavior: smooth;
 	}
 
 	body {
 		@apply m-0 text-gray-900 bg-gray-50;
-		/* 支持安全区域 */
-		padding-top: env(safe-area-inset-top);
-		padding-bottom: env(safe-area-inset-bottom);
-		padding-left: env(safe-area-inset-left);
-		padding-right: env(safe-area-inset-right);
+		/* 移动端安全区域支持 - 确保内容不被刘海/底部手势条遮挡 */
+		padding-top: max(env(safe-area-inset-top), 0.5rem);
+		padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+		padding-left: max(env(safe-area-inset-left), 0.5rem);
+		padding-right: max(env(safe-area-inset-right), 0.5rem);
+		/* 移动端点击优化 - 移除300ms延迟 */
+		touch-action: manipulation;
+		/* 防止意外下拉刷新 - 提升移动端体验 */
+		overscroll-behavior-y: contain;
 	}
 
 	body,
 	html,
 	#app {
-		@apply m-0 p-0 h-full;
+		@apply m-0 p-0;
+		/* 使用 dvh 替代 h-full/h-screen - 解决移动端浏览器地址栏高度问题 */
+		min-height: 100dvh;
 	}
+
+	/* 焦点状态可见性 - 键盘导航优化 - 增强对比度 */
+	:focus-visible {
+		@apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white;
+	}
+
+	/* 减少动态效果偏好 - 性能与晕动症友好 */
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		::before,
+		::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+
+	/* 移动端触摸优化 - 确保触摸反馈 */
+	@media (pointer: coarse) {
+		* {
+			/* 增加触摸目标的最小点击区域 */
+			touch-action: manipulation;
+		}
+	}
+}
+
+/* 全局交互类 */
+.cursor-pointer {
+	cursor: pointer;
 }
