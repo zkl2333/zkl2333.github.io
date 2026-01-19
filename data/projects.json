@@ -2,7 +2,7 @@
   {
     "name": "MR-Extension",
     "description": "用户在使用 Movie Bot 这款自动化工具时往往需要手动抓包获取 cookies，我开发了这款插件简化了这个流程。",
-    "stargazers_count": 93,
+    "stargazers_count": 94,
     "language": "Vue",
     "html_url": "https://github.com/zkl2333/MR-Extension"
   },
