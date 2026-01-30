@@ -7,13 +7,6 @@
     "html_url": "https://github.com/zkl2333/MR-Extension"
   },
   {
-    "name": "vme",
-    "description": "一个社区驱动的肯德基疯狂星期四段子分享平台，让每个星期四都充满欢乐！",
-    "stargazers_count": 33,
-    "language": "TypeScript",
-    "html_url": "https://github.com/zkl2333/vme"
-  },
-  {
     "name": "aida64-to-json",
     "description": "当设置aida64将传感器数据写入注册表时，读取注册表中的传感器参数并格式化",
     "stargazers_count": 19,
@@ -40,5 +33,12 @@
     "stargazers_count": 2,
     "language": "Rust",
     "html_url": "https://github.com/zkl2333/config-updater"
+  },
+  {
+    "name": "bilibili-live-like-bookmarklet",
+    "description": "Bilibili 直播点赞书签脚本",
+    "stargazers_count": 2,
+    "language": "Code",
+    "html_url": "https://github.com/zkl2333/bilibili-live-like-bookmarklet"
   }
 ]
