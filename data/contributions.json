@@ -4,7 +4,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 77924,
+    "stars": 78000,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -19,7 +19,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 9110,
+    "stars": 9118,
     "prs": [
       {
         "title": "docs: Update manifest.md",
@@ -34,7 +34,7 @@
     "repo_full_name": "EstrellaXD/Auto_Bangumi",
     "repo_url": "https://github.com/EstrellaXD/Auto_Bangumi",
     "description": "AutoBangumi - 全自动追番工具",
-    "stars": 7874,
+    "stars": 7880,
     "prs": [
       {
         "title": "Update README.md",
@@ -64,7 +64,7 @@
     "repo_full_name": "amtoaer/bili-sync",
     "repo_url": "https://github.com/amtoaer/bili-sync",
     "description": "由 Rust & Tokio 驱动的哔哩哔哩同步工具",
-    "stars": 2203,
+    "stars": 2210,
     "prs": [
       {
         "title": "添加扫码登录功能",
