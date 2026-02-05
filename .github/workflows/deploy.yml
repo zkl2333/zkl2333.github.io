@@ -35,6 +35,11 @@ jobs:
                   node-version: "20"
                   cache: "npm"
 
+            - name: 安装中文字体（解决 OG 图片中文乱码）
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install -y fontconfig fonts-noto-cjk
+
             - name: 安装依赖
               run: npm ci
 

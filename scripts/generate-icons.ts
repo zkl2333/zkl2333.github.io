@@ -2,6 +2,7 @@ import sharp from 'sharp'
 import https from 'https'
 import fs from 'fs'
 import path from 'path'
+import { execSync } from 'child_process'
 import { GRAVATAR_MIRRORS, getHash } from '../src/utils/gravatar.js'
 
 // ========================================
@@ -19,10 +20,49 @@ const PERSONAL_INFO = {
 
 // 图标尺寸配置
 const ICON_SIZES = {
-  favicon: [16, 32, 48],           // 标准 favicon 尺寸
-  appleTouchIcon: 180,             // iOS/Apple 图标
-  pwaIcon: [192, 512],             // PWA/Android 图标
+  favicon: [16, 32, 48], // 标准 favicon 尺寸
+  appleTouchIcon: 180, // iOS/Apple 图标
+  pwaIcon: [192, 512], // PWA/Android 图标
   ogImage: { width: 1200, height: 630 }, // Open Graph 图片
+}
+
+/**
+ * 检测系统是否已安装 CJK 中文字体。
+ * 如未安装，输出警告提示（不在脚本中执行系统安装，遵循职责分离原则）。
+ */
+function checkCjkFontsForOgImage(): boolean {
+  if (process.platform !== 'linux') return true
+
+  const has = (cmd: string) => {
+    try {
+      execSync(cmd, { stdio: 'ignore' })
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  const hasFcList = has('command -v fc-list')
+
+  const hasNotoCjk = (() => {
+    if (!hasFcList) return false
+    try {
+      const out = execSync('fc-list : family', { encoding: 'utf8' })
+      return /Noto\s+Sans\s+CJK|Noto\s+Sans\s+SC|Source\s+Han\s+Sans/i.test(out)
+    } catch {
+      return false
+    }
+  })()
+
+  if (hasNotoCjk) {
+    console.log('✅ 已检测到中文字体')
+    return true
+  }
+
+  console.warn('⚠️  警告：系统缺少中文字体，OG 图片中文可能显示为方块')
+  console.warn('👉  CI 环境：请在 workflow 中添加 "sudo apt-get install -y fontconfig fonts-noto-cjk"')
+  console.warn('👉  本地环境：请手动运行 "sudo apt-get install -y fontconfig fonts-noto-cjk"')
+  return false
 }
 
 /**
@@ -30,6 +70,8 @@ const ICON_SIZES = {
  */
 function generateOgImageSvg(avatarBase64: string): string {
   const { name, username, tagline, bio } = PERSONAL_INFO
+
+  const fontStack = "'Noto Sans SC','Noto Sans CJK SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',system-ui,-apple-system,sans-serif" // rely on system fonts (CI will install)
 
   return `
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +156,7 @@ function generateOgImageSvg(avatarBase64: string): string {
       <rect x="-35" y="-12" width="70" height="24" rx="12" fill="none" stroke="rgba(255, 255, 255, 1)" stroke-width="1"/>
       <!-- 绿点 -->
       <circle cx="-20" cy="0" r="4" fill="#10b981"/>
-      <text x="-8" y="4" font-family="Arial, sans-serif" font-size="11" fill="#6b7280" font-weight="500">Online</text>
+      <text x="-8" y="4" font-family="${fontStack}" font-size="11" fill="#6b7280" font-weight="500">Online</text>
     </g>
   </g>
 
@@ -127,16 +169,16 @@ function generateOgImageSvg(avatarBase64: string): string {
         <stop offset="100%" style="stop-color:#4b5563;stop-opacity:1" />
       </linearGradient>
     </defs>
-    <text x="350" y="270" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="url(#titleGradient)" letter-spacing="-2">${name}</text>
+    <text x="350" y="270" font-family="${fontStack}" font-size="72" font-weight="900" fill="url(#titleGradient)" letter-spacing="-2">${name}</text>
 
     <!-- 副标题 "@zkl2333 · 一个热爱生活的可爱男孩" -->
-    <text x="350" y="330" font-family="Arial, sans-serif" font-size="24" fill="#6b7280" font-weight="500">
+    <text x="350" y="330" font-family="${fontStack}" font-size="24" fill="#6b7280" font-weight="500">
       <tspan font-weight="600">@${username}</tspan>
       <tspan fill="#9ca3af" font-size="20"> · ${tagline}</tspan>
     </text>
 
     <!-- 描述文字 -->
-    <text x="350" y="380" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">
+    <text x="350" y="380" font-family="${fontStack}" font-size="18" fill="#6b7280">
       <tspan x="350" dy="0">${bio.line1}</tspan>
     </text>
   </g>
@@ -215,6 +257,9 @@ async function downloadFromFastestMirror(
 async function generateIcons() {
   console.log('🎨 开始生成图标...')
 
+  // Preflight: check CJK fonts availability
+  checkCjkFontsForOgImage()
+
   try {
     // 1. 从最快的镜像下载 Gravatar 头像
     const imageBuffer = await downloadFromFastestMirror(PERSONAL_INFO.email, 512, 'identicon')
@@ -275,9 +320,9 @@ async function generateIcons() {
     // 生成 SVG 名片
     const ogSvg = generateOgImageSvg(avatarBase64)
 
-    // 将 SVG 转换为 PNG
+    // 将 SVG 转换为 PNG，并做一次体积优化
     await sharp(Buffer.from(ogSvg))
-      .png()
+      .png({ compressionLevel: 9, palette: true })
       .toFile(ogImagePath)
 
     console.log(`✅ og-image.png (${ICON_SIZES.ogImage.width}x${ICON_SIZES.ogImage.height}) 已生成（名片样式）`)
