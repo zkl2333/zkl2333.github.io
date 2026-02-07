@@ -16,7 +16,7 @@ const { isMobile } = useMobileDetection();
 <template>
 	<div
 		:class="[
-			'relative p-4 sm:p-5 rounded-2xl bg-white/40 border border-white/40 flex flex-col backdrop-blur-sm overflow-hidden',
+			'relative p-4 sm:p-5 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/40 dark:border-gray-700/40 flex flex-col backdrop-blur-sm overflow-hidden',
 			isMobile
 				? ''
 				: 'transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/15 group/card',
@@ -42,8 +42,8 @@ const { isMobile } = useMobileDetection();
 					:class="[
 						'p-2 rounded-xl shrink-0 shadow-sm',
 						isMobile
-							? 'bg-white/50 min-w-[44px] min-h-[44px] flex items-center justify-center'
-							: 'bg-white/50 group-hover/card:bg-white/80 transition-colors',
+							? 'bg-white/50 dark:bg-gray-700/50 min-w-[44px] min-h-[44px] flex items-center justify-center'
+							: 'bg-white/50 dark:bg-gray-700/50 group-hover/card:bg-white/80 dark:group-hover/card:bg-gray-600/60 transition-colors',
 					]"
 				>
 					<Icon
@@ -59,7 +59,7 @@ const { isMobile } = useMobileDetection();
 				<a :href="repo.repo_url" target="_blank" class="truncate">
 					<h3
 						:class="[
-							'font-bold text-base sm:text-lg text-gray-900 truncate leading-snug',
+							'font-bold text-base sm:text-lg text-gray-900 dark:text-gray-100 truncate leading-snug',
 							isMobile
 								? ''
 								: 'group-hover/card:text-purple-600 transition-colors',
@@ -74,10 +74,10 @@ const { isMobile } = useMobileDetection();
 			<!-- 移动端确保星标至少 44x44px 触控目标 -->
 			<div
 				:class="[
-					'flex items-center gap-1.5 text-xs font-semibold text-gray-600 px-2.5 py-1.5 rounded-lg shrink-0 shadow-sm',
+					'flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-400 px-2.5 py-1.5 rounded-lg shrink-0 shadow-sm',
 					isMobile
-						? 'bg-white/30 min-h-[44px] min-w-[44px] justify-center'
-						: 'bg-white/30 group-hover/card:bg-white/60 transition-all',
+						? 'bg-white/30 dark:bg-gray-700/30 min-h-[44px] min-w-[44px] justify-center'
+						: 'bg-white/30 dark:bg-gray-700/30 group-hover/card:bg-white/60 dark:group-hover/card:bg-gray-600/60 transition-all',
 				]"
 			>
 				<Icon
@@ -90,7 +90,7 @@ const { isMobile } = useMobileDetection();
 
 		<!-- Body: Description -->
 		<p
-			class="relative z-10 text-sm text-gray-600 line-clamp-2 mb-4 leading-snug"
+			class="relative z-10 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 leading-snug"
 		>
 			{{ repo.description }}
 		</p>
@@ -103,10 +103,10 @@ const { isMobile } = useMobileDetection();
 				:href="pr.html_url"
 				target="_blank"
 				:class="[
-					'block px-3 py-2 rounded-xl bg-white/40 border border-transparent group/pr min-h-[40px]',
+					'block px-3 py-2 rounded-xl bg-white/40 dark:bg-gray-700/40 border border-transparent group/pr min-h-[40px]',
 					isMobile
 						? ''
-						: 'hover:bg-white/70 transition-colors hover:border-white/50',
+						: 'hover:bg-white/70 dark:hover:bg-gray-600/60 transition-colors hover:border-white/50 dark:hover:border-gray-500/50',
 				]"
 			>
 				<div class="flex items-center gap-2">
@@ -127,10 +127,10 @@ const { isMobile } = useMobileDetection();
 					/>
 					<p
 						:class="[
-							'text-xs text-gray-700 line-clamp-1 flex-1 font-medium leading-snug',
+							'text-xs text-gray-700 dark:text-gray-300 line-clamp-1 flex-1 font-medium leading-snug',
 							isMobile
 								? ''
-								: 'group-hover/pr:text-purple-700 transition-colors',
+								: 'group-hover/pr:text-purple-700 dark:group-hover/pr:text-purple-400 transition-colors',
 						]"
 					>
 						{{ pr.title }}
@@ -141,10 +141,10 @@ const { isMobile } = useMobileDetection();
 
 		<!-- Footer: Contributions Count -->
 		<div
-			class="relative z-10 flex items-center justify-end pt-4 border-t border-gray-200/60 mt-auto"
+			class="relative z-10 flex items-center justify-end pt-4 border-t border-gray-200/60 dark:border-gray-700/60 mt-auto"
 		>
 			<div
-				class="flex items-center gap-1.5 text-xs text-gray-500 font-medium bg-white/20 px-3 py-1.5 rounded-lg min-h-[32px]"
+				class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 font-medium bg-white/20 dark:bg-gray-700/20 px-3 py-1.5 rounded-lg min-h-[32px]"
 			>
 				<Icon icon="tabler:git-pull-request" class="w-4 h-4" />
 				<span>{{ repo.prs.length }} Contributions</span>

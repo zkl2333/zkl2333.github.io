@@ -27,11 +27,11 @@ const { isMobile } = useMobileDetection();
 				minWidth: isMobile ? '48px' : '56px',
 				minHeight: isMobile ? '48px' : '56px',
 			}"
-			class="relative flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 min-w-[44px] min-h-[44px] rounded-2xl bg-white/40 border border-white/50 text-gray-500 transition-all duration-200 backdrop-blur-md overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2"
+			class="relative flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 min-w-[44px] min-h-[44px] rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/50 dark:border-gray-700/50 text-gray-500 dark:text-gray-400 transition-all duration-200 backdrop-blur-md overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
 			:class="[
 				link.color,
 				isMobile
-					? 'active:scale-95 active:bg-white/60'
+					? 'active:scale-95 active:bg-white/60 dark:active:bg-gray-700/60'
 					: 'hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 group/btn active:scale-95',
 			]"
 		>

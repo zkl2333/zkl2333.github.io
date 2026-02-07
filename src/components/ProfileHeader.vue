@@ -34,7 +34,7 @@ onMounted(() => {
 			<!-- Avatar Container - 移动端优化尺寸 -->
 			<div class="relative w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52">
 				<div
-					class="w-full h-full rounded-full p-1.5 bg-white/30 backdrop-blur-md shadow-2xl ring-1 ring-white/50 transition-transform duration-500 cursor-pointer"
+					class="w-full h-full rounded-full p-1.5 bg-white/30 dark:bg-gray-700/30 backdrop-blur-md shadow-2xl ring-1 ring-white/50 dark:ring-gray-600/50 transition-transform duration-500 cursor-pointer"
 					:class="
 						isMobile
 							? 'active:scale-95'
@@ -44,13 +44,13 @@ onMounted(() => {
 					<img
 						:src="avatarUrl"
 						alt="Avatar"
-						class="w-full h-full rounded-full object-cover shadow-inner bg-gray-100"
+						class="w-full h-full rounded-full object-cover shadow-inner bg-gray-100 dark:bg-gray-800"
 					/>
 				</div>
 
 				<!-- Status Badge - 移动端优化尺寸和触摸目标 -->
 				<div
-					class="absolute bottom-0 right-2 md:bottom-2 md:right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold shadow-lg border border-white/60 flex items-center gap-2 text-gray-700 transition-transform duration-300 cursor-pointer min-h-[44px]"
+					class="absolute bottom-0 right-2 md:bottom-2 md:right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] md:text-xs font-bold shadow-lg border border-white/60 dark:border-gray-600/60 flex items-center gap-2 text-gray-700 dark:text-gray-200 transition-transform duration-300 cursor-pointer min-h-[44px]"
 					:class="isMobile ? 'scale-90' : 'group-hover:scale-110'"
 				>
 					<span class="relative flex h-2.5 w-2.5">
@@ -74,7 +74,7 @@ onMounted(() => {
 			<!-- 1. Intro / Greeting (Editorial Style) -->
 			<div class="mb-2 md:mb-1 relative overflow-hidden">
 				<span
-					class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-gray-500/90 pl-1"
+					class="text-xs md:text-sm font-bold tracking-[0.2em] uppercase text-gray-500/90 dark:text-gray-400/90 pl-1"
 				>
 					{{ greeting }}
 				</span>
@@ -82,7 +82,7 @@ onMounted(() => {
 
 			<!-- 2. Name (Massive & Tight) - 移动端字体优化 -->
 			<h1
-				class="text-5xl sm:text-6xl md:text-8xl font-black text-gray-900 tracking-tighter leading-[0.9] mb-5 md:mb-8 drop-shadow-sm"
+				class="text-5xl sm:text-6xl md:text-8xl font-black text-gray-900 dark:text-gray-50 tracking-tighter leading-[0.9] mb-5 md:mb-8 drop-shadow-sm"
 			>
 				多吃点
 			</h1>
@@ -91,18 +91,18 @@ onMounted(() => {
 			<div class="space-y-3 md:space-y-4 max-w-lg">
 				<!-- ID & Tagline -->
 				<div
-					class="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-base md:text-xl font-medium text-gray-800"
+					class="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-base md:text-xl font-medium text-gray-800 dark:text-gray-200"
 				>
-					<span class="font-mono text-cyan-600/90">@zkl2333</span>
+					<span class="font-mono text-cyan-600/90 dark:text-cyan-400/90">@zkl2333</span>
 					<span
-						class="hidden md:inline w-1.5 h-1.5 rounded-full bg-gray-300"
+						class="hidden md:inline w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-gray-600"
 					></span>
 					<span>一个热爱生活的可爱男孩</span>
 				</div>
 
 				<!-- Description - 移动端字体优化 -->
 				<p
-					class="text-sm md:text-base text-gray-500 leading-relaxed font-medium"
+					class="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed font-medium"
 				>
 					写写前端、折腾点代码，也会做些小工具玩玩
 					<br class="hidden md:block" />
@@ -110,7 +110,7 @@ onMounted(() => {
 						class="inline-flex items-center gap-1.5 mt-1 md:mt-1.5 opacity-80"
 					>
 						<span>奶茶咖啡轮着喝 ☕</span>
-						<span class="w-1 h-1 rounded-full bg-gray-400"></span>
+						<span class="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-600"></span>
 						<span>馋了就点炸鸡火锅 🍗</span>
 					</span>
 				</p>

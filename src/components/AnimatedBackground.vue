@@ -30,7 +30,7 @@ const { isMobile } = useMobileDetection();
 
 		<!-- 背景模糊层 - 移动端减少模糊以提升性能 -->
 		<div
-			class="absolute inset-0 bg-[#F0F2F5] z-10"
+			class="absolute inset-0 bg-[#F0F2F5] dark:bg-[#0f0f0f] z-10"
 			:class="isMobile ? 'backdrop-blur-[10px]' : 'backdrop-blur-[80px]'"
 			style="min-height: 100dvh; min-height: -webkit-fill-available"
 		></div>

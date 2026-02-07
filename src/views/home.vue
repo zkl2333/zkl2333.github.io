@@ -9,6 +9,7 @@ import ProjectCard from "@/components/ProjectCard.vue";
 import ContributionCard from "@/components/ContributionCard.vue";
 import SocialLinks from "@/components/SocialLinks.vue";
 import PageFooter from "@/components/PageFooter.vue";
+import ThemeToggle from "@/components/ThemeToggle.vue";
 
 // GitHub 数据
 const { projects, contributions, loading, error } = useGitHubData();
@@ -22,8 +23,9 @@ const { isMobile } = useMobileDetection();
 </script>
 
 <template>
+	<ThemeToggle />
 	<div
-		class="min-h-[100dvh] bg-[#F0F2F5] text-gray-800 overflow-hidden relative font-sans selection:bg-cyan-500/20"
+		class="min-h-[100dvh] bg-[#F0F2F5] dark:bg-[#0f0f0f] text-gray-800 dark:text-gray-100 overflow-hidden relative font-sans selection:bg-cyan-500/20 dark:selection:bg-cyan-500/30 transition-colors duration-300"
 	>
 		<!-- Liquid Mesh Background -->
 		<AnimatedBackground :blobs="blobs" />
@@ -34,7 +36,7 @@ const { isMobile } = useMobileDetection();
 			<!-- Liquid Glass Card -->
 			<div
 				ref="cardRef"
-				class="liquid-card group relative p-6 md:p-12 rounded-3xl md:rounded-[3rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-0 md:mx-0 ring-1 ring-white/40"
+				class="liquid-card group relative p-6 md:p-12 rounded-3xl md:rounded-[3rem] max-w-5xl w-full transition-all duration-500 overflow-hidden mx-0 md:mx-0 ring-1 ring-white/40 dark:ring-gray-700/40 dark:bg-gradient-to-br dark:from-gray-800/60 dark:to-gray-900/30"
 				:class="isMobile ? '' : 'backdrop-blur-xl'"
 				@mouseleave="handleMouseLeave"
 			>
@@ -51,7 +53,7 @@ const { isMobile } = useMobileDetection();
 				<!-- Inner Reflection/Highlight -->
 				<div
 					v-if="!isMobile"
-					class="absolute inset-0 rounded-[2.5rem] border border-white/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)] pointer-events-none"
+					class="absolute inset-0 rounded-[2.5rem] border border-white/40 dark:border-gray-600/40 shadow-[inset_0_0_20px_rgba(255,255,255,0.5)] dark:shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] pointer-events-none"
 				></div>
 
 				<!-- Profile Header -->
@@ -69,12 +71,12 @@ const { isMobile } = useMobileDetection();
 						<div
 							v-for="i in 6"
 							:key="i"
-							class="h-32 rounded-2xl bg-white/20 animate-pulse"
+							class="h-32 rounded-2xl bg-white/20 dark:bg-gray-700/30 animate-pulse"
 						></div>
 					</div>
 					<div
 						v-else-if="error"
-						class="flex flex-col items-center justify-center py-8 text-gray-500 gap-2"
+						class="flex flex-col items-center justify-center py-8 text-gray-500 dark:text-gray-400 gap-2"
 					>
 						<Icon
 							icon="tabler:mood-sad"

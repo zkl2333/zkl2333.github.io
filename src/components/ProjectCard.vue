@@ -21,9 +21,9 @@ const { isMobile } = useMobileDetection();
 		rel="noopener noreferrer"
 		:aria-label="`View project: ${project.name}`"
 		:class="[
-			'relative p-4 sm:p-5 rounded-2xl bg-white/40 border border-white/40 flex flex-col h-full backdrop-blur-sm overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2',
+			'relative p-4 sm:p-5 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/40 dark:border-gray-700/40 flex flex-col h-full backdrop-blur-sm overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900',
 			isMobile
-				? 'active:scale-98 active:bg-white/60 transition-all duration-150'
+				? 'active:scale-98 active:bg-white/60 dark:active:bg-gray-700/60 transition-all duration-150'
 				: 'transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/15 group/card active:scale-98',
 		]"
 	>
@@ -47,8 +47,8 @@ const { isMobile } = useMobileDetection();
 					:class="[
 						'p-2 rounded-xl shrink-0 shadow-sm',
 						isMobile
-							? 'bg-white/50 min-w-[44px] min-h-[44px] flex items-center justify-center'
-							: 'bg-white/50 group-hover/card:bg-white/80 transition-colors',
+							? 'bg-white/50 dark:bg-gray-700/50 min-w-[44px] min-h-[44px] flex items-center justify-center'
+							: 'bg-white/50 dark:bg-gray-700/50 group-hover/card:bg-white/80 dark:group-hover/card:bg-gray-600/60 transition-colors',
 					]"
 				>
 					<Icon
@@ -63,7 +63,7 @@ const { isMobile } = useMobileDetection();
 				</div>
 				<h3
 					:class="[
-						'font-bold text-base sm:text-lg text-gray-900 truncate leading-snug',
+						'font-bold text-base sm:text-lg text-gray-900 dark:text-gray-100 truncate leading-snug',
 						isMobile
 							? ''
 							: 'group-hover/card:text-blue-600 transition-colors',
@@ -77,10 +77,10 @@ const { isMobile } = useMobileDetection();
 			<!-- 移动端确保星标至少 44x44px 触控目标 -->
 			<div
 				:class="[
-					'flex items-center gap-1.5 text-xs font-semibold text-gray-600 px-2.5 py-1.5 rounded-lg shrink-0 shadow-sm',
+					'flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-400 px-2.5 py-1.5 rounded-lg shrink-0 shadow-sm',
 					isMobile
-						? 'bg-white/30 min-h-[44px] min-w-[44px] justify-center'
-						: 'bg-white/30 group-hover/card:bg-white/60 transition-all',
+						? 'bg-white/30 dark:bg-gray-700/30 min-h-[44px] min-w-[44px] justify-center'
+						: 'bg-white/30 dark:bg-gray-700/30 group-hover/card:bg-white/60 dark:group-hover/card:bg-gray-600/60 transition-all',
 				]"
 			>
 				<Icon
@@ -93,21 +93,21 @@ const { isMobile } = useMobileDetection();
 
 		<!-- Body: Description -->
 		<p
-			class="relative z-10 text-sm text-gray-600 line-clamp-2 mb-4 grow leading-snug"
+			class="relative z-10 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 grow leading-snug"
 		>
 			{{ project.description }}
 		</p>
 
 		<!-- Footer: Language & Arrow -->
 		<div
-			class="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-gray-200/60"
+			class="relative z-10 flex items-center justify-between mt-auto pt-4 border-t border-gray-200/60 dark:border-gray-700/60"
 		>
 			<div class="flex items-center gap-2 min-h-[24px]">
 				<span
-					class="w-2.5 h-2.5 rounded-full ring-2 ring-white/50 shadow-sm"
+					class="w-2.5 h-2.5 rounded-full ring-2 ring-white/50 dark:ring-gray-700/50 shadow-sm"
 					:class="getLangColor(project.language)"
 				></span>
-				<span class="text-xs text-gray-600 font-medium">{{
+				<span class="text-xs text-gray-600 dark:text-gray-400 font-medium">{{
 					project.language
 				}}</span>
 			</div>
