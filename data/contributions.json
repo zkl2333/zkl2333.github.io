@@ -4,7 +4,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 78564,
+    "stars": 78595,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -19,7 +19,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 9168,
+    "stars": 9172,
     "prs": [
       {
         "title": "docs: Update manifest.md",
