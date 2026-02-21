@@ -4,7 +4,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 79037,
+    "stars": 79085,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -19,7 +19,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 9217,
+    "stars": 9228,
     "prs": [
       {
         "title": "docs: Update manifest.md",
@@ -64,7 +64,7 @@
     "repo_full_name": "amtoaer/bili-sync",
     "repo_url": "https://github.com/amtoaer/bili-sync",
     "description": "由 Rust & Tokio 驱动的哔哩哔哩同步工具",
-    "stars": 2242,
+    "stars": 2245,
     "prs": [
       {
         "title": "添加扫码登录功能",
