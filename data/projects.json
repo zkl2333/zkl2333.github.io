@@ -21,18 +21,18 @@
     "html_url": "https://github.com/zkl2333/git-for-windows-zh"
   },
   {
+    "name": "config-updater",
+    "description": "极简通用配置自动更新服务",
+    "stargazers_count": 3,
+    "language": "Rust",
+    "html_url": "https://github.com/zkl2333/config-updater"
+  },
+  {
     "name": "rc-esp",
     "description": "基于 ESP-8266 的遥控小车",
     "stargazers_count": 3,
     "language": "C++",
     "html_url": "https://github.com/zkl2333/rc-esp"
-  },
-  {
-    "name": "config-updater",
-    "description": "极简通用配置自动更新服务",
-    "stargazers_count": 2,
-    "language": "Rust",
-    "html_url": "https://github.com/zkl2333/config-updater"
   },
   {
     "name": "bilibili-live-like-bookmarklet",
