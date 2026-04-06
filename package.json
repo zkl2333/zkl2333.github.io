@@ -27,7 +27,7 @@
 		"tsx": "^4.21.0",
 		"typescript": "^5.7.2",
 		"unplugin-icons": "^0.20.2",
-		"vite": "^7.2.4"
+		"vite": "^7.3.2"
 	},
 	"repository": {
 		"type": "git",
