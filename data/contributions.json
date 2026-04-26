@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 116545,
+    "stars": 118097,
     "prs": [
       {
         "title": "feat(deepseek): plumb reasoning_effort and thinking toggle to V4 API",
@@ -16,7 +16,7 @@
         "title": "fix(deepseek): bump V4 family context window to 1M tokens",
         "html_url": "https://github.com/NousResearch/hermes-agent/pull/14952",
         "created_at": "2026-04-24T06:49:36Z",
-        "state": "OPEN"
+        "state": "MERGED"
       },
       {
         "title": "fix(deepseek): preserve v4 native model ids during provider normalization",
@@ -37,7 +37,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 84519,
+    "stars": 84561,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -52,7 +52,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 9661,
+    "stars": 9669,
     "prs": [
       {
         "title": "docs: Update manifest.md",
@@ -67,7 +67,7 @@
     "repo_full_name": "EstrellaXD/Auto_Bangumi",
     "repo_url": "https://github.com/EstrellaXD/Auto_Bangumi",
     "description": "AutoBangumi - 全自动追番工具",
-    "stars": 8001,
+    "stars": 8003,
     "prs": [
       {
         "title": "Update README.md",
@@ -97,7 +97,7 @@
     "repo_full_name": "amtoaer/bili-sync",
     "repo_url": "https://github.com/amtoaer/bili-sync",
     "description": "由 Rust & Tokio 驱动的哔哩哔哩同步工具",
-    "stars": 2392,
+    "stars": 2393,
     "prs": [
       {
         "title": "添加扫码登录功能",
