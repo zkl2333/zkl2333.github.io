@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 122645,
+    "stars": 124764,
     "prs": [
       {
         "title": "feat(deepseek): plumb reasoning_effort and thinking toggle to V4 API",
@@ -37,7 +37,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 84716,
+    "stars": 84775,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -48,61 +48,61 @@
     ]
   },
   {
+    "repo_name": "wxt",
+    "repo_full_name": "wxt-dev/wxt",
+    "repo_url": "https://github.com/wxt-dev/wxt",
+    "description": "⚡ Next-gen Web Extension Framework",
+    "stars": 9691,
+    "prs": [
+      {
+        "title": "docs: Update manifest.md",
+        "html_url": "https://github.com/wxt-dev/wxt/pull/815",
+        "created_at": "2024-07-09T07:29:26Z",
+        "state": "MERGED"
+      }
+    ]
+  },
+  {
+    "repo_name": "Auto_Bangumi",
+    "repo_full_name": "EstrellaXD/Auto_Bangumi",
+    "repo_url": "https://github.com/EstrellaXD/Auto_Bangumi",
+    "description": "AutoBangumi - 全自动追番工具",
+    "stars": 8006,
+    "prs": [
+      {
+        "title": "Update README.md",
+        "html_url": "https://github.com/EstrellaXD/Auto_Bangumi/pull/790",
+        "created_at": "2024-06-27T06:06:17Z",
+        "state": "MERGED"
+      }
+    ]
+  },
+  {
+    "repo_name": "weekly_report",
+    "repo_full_name": "guaguaguaxia/weekly_report",
+    "repo_url": "https://github.com/guaguaguaxia/weekly_report",
+    "description": "简单描述工作内容，帮你生成完整周报",
+    "stars": 3237,
+    "prs": [
+      {
+        "title": "结果用 md 渲染",
+        "html_url": "https://github.com/guaguaguaxia/weekly_report/pull/1",
+        "created_at": "2023-02-10T07:17:11Z",
+        "state": "MERGED"
+      }
+    ]
+  },
+  {
     "repo_name": "bili-sync",
     "repo_full_name": "amtoaer/bili-sync",
     "repo_url": "https://github.com/amtoaer/bili-sync",
     "description": "由 Rust & Tokio 驱动的哔哩哔哩同步工具",
-    "stars": 2395,
+    "stars": 2397,
     "prs": [
       {
         "title": "添加扫码登录功能",
         "html_url": "https://github.com/amtoaer/bili-sync/pull/597",
         "created_at": "2026-01-10T11:00:18Z",
-        "state": "MERGED"
-      }
-    ]
-  },
-  {
-    "repo_name": "WP-Editor.md",
-    "repo_full_name": "LuRenJiasWorld/WP-Editor.md",
-    "repo_url": "https://github.com/LuRenJiasWorld/WP-Editor.md",
-    "description": "或许这是一个WordPress中最好，最完美的Markdown编辑器",
-    "stars": 789,
-    "prs": [
-      {
-        "title": "Update editormd-zh_CN.po",
-        "html_url": "https://github.com/LuRenJiasWorld/WP-Editor.md/pull/458",
-        "created_at": "2020-05-09T01:51:51Z",
-        "state": "MERGED"
-      }
-    ]
-  },
-  {
-    "repo_name": "models",
-    "repo_full_name": "router-for-me/models",
-    "repo_url": "https://github.com/router-for-me/models",
-    "description": "Model List of CLIProxyAPI",
-    "stars": 1,
-    "prs": [
-      {
-        "title": "fix(kimi): sync Kimi catalog to verified coding-plan model (kimi-for-coding)",
-        "html_url": "https://github.com/router-for-me/models/pull/8",
-        "created_at": "2026-04-17T05:41:50Z",
-        "state": "OPEN"
-      }
-    ]
-  },
-  {
-    "repo_name": "vme-app",
-    "repo_full_name": "vme-im/vme-app",
-    "repo_url": "https://github.com/vme-im/vme-app",
-    "description": "一个社区驱动的肯德基疯狂星期四段子分享平台，让每个星期四都充满欢乐！",
-    "stars": 0,
-    "prs": [
-      {
-        "title": "Ai classification tags",
-        "html_url": "https://github.com/vme-im/vme-app/pull/1",
-        "created_at": "2026-02-02T10:52:13Z",
         "state": "MERGED"
       }
     ]
