@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 133963,
+    "stars": 135691,
     "prs": [
       {
         "title": "feat(deepseek): plumb reasoning_effort and thinking toggle to V4 API",
@@ -37,7 +37,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 85088,
+    "stars": 85152,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -52,7 +52,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 9727,
+    "stars": 9736,
     "prs": [
       {
         "title": "docs: Update manifest.md",
@@ -82,7 +82,7 @@
     "repo_full_name": "guaguaguaxia/weekly_report",
     "repo_url": "https://github.com/guaguaguaxia/weekly_report",
     "description": "简单描述工作内容，帮你生成完整周报",
-    "stars": 3237,
+    "stars": 3238,
     "prs": [
       {
         "title": "结果用 md 渲染",
