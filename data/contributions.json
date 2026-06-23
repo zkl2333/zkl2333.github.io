@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 199847,
+    "stars": 200793,
     "prs": [
       {
         "title": "feat(deepseek): plumb V4 thinking + reasoning_effort via provider profile",
@@ -43,7 +43,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 87556,
+    "stars": 87606,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -58,7 +58,7 @@
     "repo_full_name": "wxt-dev/wxt",
     "repo_url": "https://github.com/wxt-dev/wxt",
     "description": "⚡ Next-gen Web Extension Framework",
-    "stars": 10042,
+    "stars": 10052,
     "prs": [
       {
         "title": "docs: Update manifest.md",
@@ -73,7 +73,7 @@
     "repo_full_name": "EstrellaXD/Auto_Bangumi",
     "repo_url": "https://github.com/EstrellaXD/Auto_Bangumi",
     "description": "AutoBangumi - 全自动追番工具",
-    "stars": 8096,
+    "stars": 8097,
     "prs": [
       {
         "title": "Update README.md",
