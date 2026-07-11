@@ -7,18 +7,18 @@
     "html_url": "https://github.com/zkl2333/MR-Extension"
   },
   {
+    "name": "git-for-windows-zh",
+    "description": "Git for Windows 汉化包",
+    "stargazers_count": 19,
+    "language": "PowerShell",
+    "html_url": "https://github.com/zkl2333/git-for-windows-zh"
+  },
+  {
     "name": "aida64-to-json",
     "description": "当设置aida64将传感器数据写入注册表时，读取注册表中的传感器参数并格式化",
     "stargazers_count": 19,
     "language": "JavaScript",
     "html_url": "https://github.com/zkl2333/aida64-to-json"
-  },
-  {
-    "name": "git-for-windows-zh",
-    "description": "Git for Windows 汉化包",
-    "stargazers_count": 18,
-    "language": "PowerShell",
-    "html_url": "https://github.com/zkl2333/git-for-windows-zh"
   },
   {
     "name": "config-updater",
