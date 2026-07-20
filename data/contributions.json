@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 217504,
+    "stars": 217551,
     "prs": [
       {
         "title": "feat(deepseek): plumb V4 thinking + reasoning_effort via provider profile",
@@ -43,7 +43,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 88660,
+    "stars": 88664,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
