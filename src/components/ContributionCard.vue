@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useMobileDetection } from "@/composables/useMobileDetection";
 import { Icon } from "@iconify/vue";
 import { formatNumber } from "@/utils/format";
 import type { ContributionRepo } from "@/types/github";
@@ -9,146 +8,118 @@ interface Props {
 }
 
 defineProps<Props>();
-
-const { isMobile } = useMobileDetection();
 </script>
 
 <template>
-	<div
-		:class="[
-			'relative p-4 sm:p-5 rounded-2xl bg-white/40 dark:bg-gray-800/40 border border-white/40 dark:border-gray-700/40 flex flex-col backdrop-blur-sm overflow-hidden',
-			isMobile
-				? ''
-				: 'transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/15 group/card',
-		]"
-	>
-		<!-- Card Hover Gradient -->
-		<div
-			:class="[
-				'absolute inset-0 bg-linear-to-br from-purple-500/8 to-pink-500/8 transition-opacity duration-300',
-				isMobile
-					? 'opacity-0'
-					: 'opacity-0 group-hover/card:opacity-100',
-			]"
-		></div>
-
+	<article class="card flex flex-col h-full">
 		<!-- Header: Icon + Title + Stars -->
-		<div
-			class="relative z-10 flex items-start justify-between gap-3 sm:gap-4 mb-4"
-		>
-			<div class="flex items-center gap-3 min-w-0 flex-1">
-				<!-- 移动端确保图标容器至少 44x44px -->
-				<div
-					:class="[
-						'p-2 rounded-xl shrink-0 shadow-sm',
-						isMobile
-							? 'bg-white/50 dark:bg-gray-700/50 min-w-[44px] min-h-[44px] flex items-center justify-center'
-							: 'bg-white/50 dark:bg-gray-700/50 group-hover/card:bg-white/80 dark:group-hover/card:bg-gray-600/60 transition-colors',
-					]"
+		<div class="flex items-start justify-between gap-3 mb-3">
+			<div class="flex items-center gap-2.5 min-w-0 flex-1">
+				<Icon
+					icon="tabler:brand-github"
+					class="w-5 h-5 shrink-0 text-[var(--color-accent)]"
+				/>
+				<h3
+					class="font-bold text-base text-[var(--color-accent-2)] truncate leading-snug"
+					:title="repo.repo_full_name"
 				>
-					<Icon
-						icon="tabler:brand-github"
-						:class="[
-							'w-6 h-6',
-							isMobile
-								? 'text-purple-600/90'
-								: 'text-purple-600/90 group-hover/card:text-purple-600 transition-colors',
-						]"
-					/>
-				</div>
-				<a :href="repo.repo_url" target="_blank" class="truncate">
-					<h3
-						:class="[
-							'font-bold text-base sm:text-lg text-gray-900 dark:text-gray-100 truncate leading-snug',
-							isMobile
-								? ''
-								: 'group-hover/card:text-purple-600 transition-colors',
-						]"
-						:title="repo.repo_full_name"
+					<a
+						:href="repo.repo_url"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="card__link"
 					>
 						{{ repo.repo_full_name }}
-					</h3>
-				</a>
+					</a>
+				</h3>
 			</div>
 
-			<!-- 移动端确保星标至少 44x44px 触控目标 -->
-			<div
-				:class="[
-					'flex items-center gap-1.5 text-xs font-semibold text-gray-600 dark:text-gray-400 px-2.5 py-1.5 rounded-lg shrink-0 shadow-sm',
-					isMobile
-						? 'bg-white/30 dark:bg-gray-700/30 min-h-[44px] min-w-[44px] justify-center'
-						: 'bg-white/30 dark:bg-gray-700/30 group-hover/card:bg-white/60 dark:group-hover/card:bg-gray-600/60 transition-all',
-				]"
-			>
+			<span class="meta flex items-center gap-1 shrink-0">
 				<Icon
 					icon="tabler:star-filled"
-					class="w-3.5 h-3.5 text-amber-400"
+					class="w-3.5 h-3.5 text-[var(--color-accent-warm)]"
 				/>
 				{{ formatNumber(repo.stars) }}
-			</div>
+			</span>
 		</div>
 
 		<!-- Body: Description -->
-		<p
-			class="relative z-10 text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4 leading-snug"
-		>
+		<p class="text-sm text-[var(--color-muted)] line-clamp-2 mb-4 leading-relaxed">
 			{{ repo.description }}
 		</p>
 
-		<!-- PR 列表 - Refined -->
-		<div class="relative z-10 space-y-2 mb-4 grow">
+		<!-- PR 列表 -->
+		<div class="space-y-2 mb-4 grow">
 			<a
 				v-for="pr in repo.prs.slice(0, 3)"
 				:key="pr.html_url"
 				:href="pr.html_url"
 				target="_blank"
-				:class="[
-					'block px-3 py-2 rounded-xl bg-white/40 dark:bg-gray-700/40 border border-transparent group/pr min-h-[40px]',
-					isMobile
-						? ''
-						: 'hover:bg-white/70 dark:hover:bg-gray-600/60 transition-colors hover:border-white/50 dark:hover:border-gray-500/50',
-				]"
+				rel="noopener noreferrer"
+				class="pr-row"
 			>
-				<div class="flex items-center gap-2">
-					<Icon
-						v-if="pr.state === 'MERGED'"
-						icon="pajamas:git-merge"
-						class="w-4 h-4 text-purple-500 shrink-0"
-					/>
-					<Icon
-						v-else-if="pr.state === 'OPEN'"
-						icon="pajamas:git-pull-request"
-						class="w-4 h-4 text-green-500 shrink-0"
-					/>
-					<Icon
-						v-else
-						icon="pajamas:git-pull-request-closed"
-						class="w-4 h-4 text-gray-400 shrink-0"
-					/>
-					<p
-						:class="[
-							'text-xs text-gray-700 dark:text-gray-300 line-clamp-1 flex-1 font-medium leading-snug',
-							isMobile
-								? ''
-								: 'group-hover/pr:text-purple-700 dark:group-hover/pr:text-purple-400 transition-colors',
-						]"
-					>
-						{{ pr.title }}
-					</p>
-				</div>
+				<Icon
+					v-if="pr.state === 'MERGED'"
+					icon="pajamas:git-merge"
+					class="w-4 h-4 shrink-0 text-[var(--color-accent)]"
+				/>
+				<Icon
+					v-else-if="pr.state === 'OPEN'"
+					icon="pajamas:git-pull-request"
+					class="w-4 h-4 shrink-0 text-green-600 dark:text-green-400"
+				/>
+				<Icon
+					v-else
+					icon="pajamas:git-pull-request-closed"
+					class="w-4 h-4 shrink-0 text-[var(--color-muted)]"
+				/>
+				<span class="pr-row__title">{{ pr.title }}</span>
 			</a>
 		</div>
 
 		<!-- Footer: Contributions Count -->
 		<div
-			class="relative z-10 flex items-center justify-end pt-4 border-t border-gray-200/60 dark:border-gray-700/60 mt-auto"
+			class="meta flex items-center justify-end gap-1.5 mt-auto pt-3 border-t border-[var(--color-border)]"
 		>
-			<div
-				class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 font-medium bg-white/20 dark:bg-gray-700/20 px-3 py-1.5 rounded-lg min-h-[32px]"
-			>
-				<Icon icon="tabler:git-pull-request" class="w-4 h-4" />
-				<span>{{ repo.prs.length }} Contributions</span>
-			</div>
+			<Icon icon="tabler:git-pull-request" class="w-4 h-4" />
+			<span>{{ repo.prs.length }} Contributions</span>
 		</div>
-	</div>
+	</article>
 </template>
+
+<style scoped>
+.pr-row {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.45rem 0.6rem;
+	border-radius: 0.4rem;
+	border: 1px solid color-mix(in oklch, var(--color-border) 80%, transparent);
+	background: color-mix(in oklch, var(--color-muted) 5%, transparent);
+	text-decoration: none;
+	transition:
+		color 180ms ease,
+		border-color 180ms ease,
+		background 180ms ease;
+}
+.pr-row:hover {
+	border-color: color-mix(in oklch, var(--color-accent) 35%, var(--color-border));
+	background: color-mix(in oklch, var(--color-accent) 5%, transparent);
+}
+.pr-row__title {
+	flex: 1;
+	min-width: 0;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	color: var(--color-global-text);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	transition: color 180ms ease;
+}
+.pr-row:hover .pr-row__title {
+	color: var(--color-accent);
+}
+</style>
