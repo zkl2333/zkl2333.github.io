@@ -4,7 +4,7 @@
     "repo_full_name": "NousResearch/hermes-agent",
     "repo_url": "https://github.com/NousResearch/hermes-agent",
     "description": "The agent that grows with you",
-    "stars": 250600,
+    "stars": 250754,
     "prs": [
       {
         "title": "feat(deepseek): plumb V4 thinking + reasoning_effort via provider profile",
@@ -43,7 +43,7 @@
     "repo_full_name": "modelcontextprotocol/servers",
     "repo_url": "https://github.com/modelcontextprotocol/servers",
     "description": "Model Context Protocol Servers",
-    "stars": 90937,
+    "stars": 90958,
     "prs": [
       {
         "title": "docs: Fix duplicate directory_tree tool entry in README.md",
@@ -73,7 +73,7 @@
     "repo_full_name": "EstrellaXD/Auto_Bangumi",
     "repo_url": "https://github.com/EstrellaXD/Auto_Bangumi",
     "description": "AutoBangumi - 全自动追番工具",
-    "stars": 8254,
+    "stars": 8253,
     "prs": [
       {
         "title": "Update README.md",
@@ -88,7 +88,7 @@
     "repo_full_name": "guaguaguaxia/weekly_report",
     "repo_url": "https://github.com/guaguaguaxia/weekly_report",
     "description": "简单描述工作内容，帮你生成完整周报",
-    "stars": 3231,
+    "stars": 3232,
     "prs": [
       {
         "title": "结果用 md 渲染",
