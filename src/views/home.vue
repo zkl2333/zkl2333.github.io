@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, defineAsyncComponent } from "vue";
 import { Icon } from "@iconify/vue";
 import { useGitHubData } from "@/composables/useGitHubData";
 import { useGreeting } from "@/composables/useGreeting";
@@ -11,11 +11,14 @@ import SocialLinks from "@/components/SocialLinks.vue";
 import PageFooter from "@/components/PageFooter.vue";
 import ThemeToggle from "@/components/ThemeToggle.vue";
 
+const TableScene = defineAsyncComponent(() => import("@/components/TableScene.vue"));
+
 // GitHub 数据
 const { projects, contributions, loading, error } = useGitHubData();
 
 // 问候语
 const { greeting } = useGreeting();
+const heroGreeting = ref(greeting.value);
 
 // Gravatar 头像
 const email = "i@zkl2333.com";
@@ -56,10 +59,13 @@ onMounted(() => {
 
 			<!-- Hero：问候 + 简介 -->
 			<section
-				class="card p-6 md:p-8 mb-12 md:mb-16 animate-fade-up"
+				class="card hero-card animate-fade-up"
 				style="animation-delay: 0.1s"
 			>
-				<p class="meta mb-3">{{ greeting }}</p>
+				<div class="hero-card__content">
+					<Transition name="greeting" mode="out-in">
+						<p class="meta mb-3" :key="heroGreeting" aria-live="polite">{{ heroGreeting }}</p>
+					</Transition>
 					<p class="text-base leading-relaxed">
 						我是一个喜欢折腾的前端爱好者，平时写写代码、做些小工具。长文记在
 						<a
@@ -76,7 +82,9 @@ onMounted(() => {
 							class="hero-link"
 							>GitHub</a
 						>。不写代码的时候，多半在琢磨下一顿吃什么，努力不辜负「多吃点」这个名字。
-					</p>
+						</p>
+				</div>
+				<TableScene @fortune="heroGreeting = $event" />
 			</section>
 
 			<!-- GitHub 项目 -->
@@ -141,6 +149,41 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.hero-card {
+	display: flex;
+	align-items: center;
+	margin-bottom: 3rem;
+	padding: 1.5rem;
+	overflow: hidden;
+}
+
+.hero-card__content {
+	flex: 1;
+	min-width: 0;
+}
+
+.greeting-enter-active,
+.greeting-leave-active {
+	transition: opacity 160ms ease, transform 200ms ease;
+}
+.greeting-enter-from { opacity: 0; transform: translateY(4px); }
+.greeting-leave-to { opacity: 0; transform: translateY(-3px); }
+
+@media (min-width: 768px) {
+	.hero-card {
+		margin-bottom: 4rem;
+		padding: 2rem;
+	}
+}
+
+@media (max-width: 767px) {
+	.hero-card {
+		flex-direction: column;
+		align-items: stretch;
+		padding: 1.5rem 1.5rem 1.25rem;
+	}
+}
+
 /* Entrance Animations */
 .animate-fade-up {
 	animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
