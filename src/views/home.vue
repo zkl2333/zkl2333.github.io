@@ -60,23 +60,23 @@ onMounted(() => {
 				style="animation-delay: 0.1s"
 			>
 				<p class="meta mb-3">{{ greeting }}</p>
-				<p class="text-base leading-relaxed">
-					写写前端、折腾点代码，偶尔做些小工具。长文写在
-					<a
-						href="https://blog.zkl2333.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="hero-link"
-						>博客</a
-					>，代码都放在
-					<a
-						href="https://github.com/zkl2333"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="hero-link"
-						>GitHub</a
-					>。不写代码的时候，多半在琢磨下一顿吃什么。
-				</p>
+					<p class="text-base leading-relaxed">
+						我是一个喜欢折腾的前端爱好者，平时写写代码、做些小工具。长文记在
+						<a
+							href="https://blog.zkl2333.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="hero-link"
+							>博客</a
+						>，代码放在
+						<a
+							href="https://github.com/zkl2333"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="hero-link"
+							>GitHub</a
+						>。不写代码的时候，多半在琢磨下一顿吃什么，努力不辜负「多吃点」这个名字。
+					</p>
 			</section>
 
 			<!-- GitHub 项目 -->
