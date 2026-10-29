@@ -9,21 +9,17 @@ export function useTheme() {
   const updateTheme = () => {
     const theme = currentTheme.value
     const root = document.documentElement
-    
+
     if (theme === 'system') {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       isDark.value = prefersDark
-      if (prefersDark) {
-        root.classList.add('dark')
-      } else {
-        root.classList.remove('dark')
-      }
+      root.dataset.theme = prefersDark ? 'dark' : 'light'
     } else if (theme === 'dark') {
       isDark.value = true
-      root.classList.add('dark')
+      root.dataset.theme = 'dark'
     } else {
       isDark.value = false
-      root.classList.remove('dark')
+      root.dataset.theme = 'light'
     }
   }
 

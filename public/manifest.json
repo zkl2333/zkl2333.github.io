@@ -1,7 +1,7 @@
 {
   "name": "多吃点的小饭桌",
   "short_name": "多吃点",
-  "description": "zkl2333（多吃点）的个人主页，写写前端、折腾点代码，也会做些小工具玩玩",
+  "description": "zkl2333（多吃点）的个人主页，写写前端、折腾点代码，偶尔做些小工具",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F0F2F5",

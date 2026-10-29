@@ -7,7 +7,7 @@
     <!-- Primary Meta Tags -->
     <title>多吃点的小饭桌</title>
     <meta name="title" content="多吃点的小饭桌" />
-    <meta name="description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，也会做些小工具玩玩。奶茶咖啡轮着喝，馋了就点炸鸡火锅牛排烧烤 🍗" />
+    <meta name="description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，偶尔做些小工具。不写代码的时候，多半在琢磨下一顿吃什么。" />
     <meta name="keywords" content="zkl2333,多吃点,前端开发,个人主页,Vue,TypeScript,Web开发" />
     <meta name="author" content="zkl2333" />
 
@@ -28,8 +28,8 @@
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f0e3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2f2820" media="(prefers-color-scheme: dark)" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="多吃点" />
@@ -39,7 +39,7 @@
     <meta property="og:url" content="https://www.zkl2333.com/" />
     <meta property="og:site_name" content="多吃点的小饭桌" />
     <meta property="og:title" content="多吃点的小饭桌" />
-    <meta property="og:description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，也会做些小工具玩玩。奶茶咖啡轮着喝，馋了就点炸鸡火锅牛排烧烤 🍗" />
+    <meta property="og:description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，偶尔做些小工具。不写代码的时候，多半在琢磨下一顿吃什么。" />
     <meta property="og:image" content="https://www.zkl2333.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -49,7 +49,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.zkl2333.com/" />
     <meta name="twitter:title" content="多吃点的小饭桌" />
-    <meta name="twitter:description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，也会做些小工具玩玩。奶茶咖啡轮着喝，馋了就点炸鸡火锅牛排烧烤 🍗" />
+    <meta name="twitter:description" content="zkl2333（多吃点）的个人主页，写写前端、折腾点代码，偶尔做些小工具。不写代码的时候，多半在琢磨下一顿吃什么。" />
     <meta name="twitter:image" content="https://www.zkl2333.com/og-image.png" />
     <meta name="twitter:creator" content="@zkl2333" />
   </head>
@@ -57,12 +57,10 @@
     <script>
       // 在页面加载前设置主题，防止闪烁 (FOUC)
       (function() {
-        const savedTheme = localStorage.getItem('theme');
+        const savedTheme = localStorage.getItem('theme') || 'system';
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (savedTheme === 'system' && prefersDark) || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark');
-        }
+        const resolved = savedTheme === 'dark' || (savedTheme === 'system' && prefersDark) ? 'dark' : 'light';
+        document.documentElement.dataset.theme = resolved;
       })();
     </script>
     <div id="app"></div>

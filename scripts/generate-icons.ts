@@ -14,7 +14,7 @@ const PERSONAL_INFO = {
   username: 'zkl2333',
   tagline: '一个热爱生活的可爱男孩',
   bio: {
-    line1: '写写前端、折腾点代码，也会做些小工具玩玩'
+    line1: '写写前端、折腾点代码，偶尔做些小工具'
   },
 }
 
@@ -66,12 +66,22 @@ function checkCjkFontsForOgImage(): boolean {
 }
 
 /**
- * 生成 OG 图片 SVG（液态网格 + 毛玻璃风格，匹配网页设计）
+ * 生成 OG 图片 SVG（小饭桌暖色纸面风格，匹配网页设计）
  */
 function generateOgImageSvg(avatarBase64: string): string {
   const { name, username, tagline, bio } = PERSONAL_INFO
 
   const fontStack = "'Noto Sans SC','Noto Sans CJK SC','Source Han Sans SC','PingFang SC','Microsoft YaHei',system-ui,-apple-system,sans-serif" // rely on system fonts (CI will install)
+
+  // 小饭桌配色（oklch 的近似 hex）
+  const colors = {
+    bg: '#f7f0e3',      // oklch(95.8% 0.022 75) 奶油米白
+    surface: '#fbf7ee', // oklch(98.2% 0.014 80) 纸面
+    border: '#e3d7c3',  // oklch(87% 0.025 70) 细边框
+    text: '#3d3229',    // oklch(28% 0.025 50) 深棕
+    muted: '#8a7a68',   // oklch(50% 0.025 60) 暖灰
+    accent: '#c97b3d',  // oklch(64% 0.135 42) 焦糖橙
+  }
 
   return `
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
@@ -82,105 +92,47 @@ function generateOgImageSvg(avatarBase64: string): string {
       <feColorMatrix type="saturate" values="0"/>
     </filter>
 
-    <!-- 模糊效果（模拟毛玻璃） -->
-    <filter id="blur">
-      <feGaussianBlur stdDeviation="8"/>
-    </filter>
-
-    <!-- 渐变定义 - 匹配网页的液态网格颜色 -->
-    <radialGradient id="blob1">
-      <stop offset="0%" style="stop-color:#c084fc;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:0" />
-    </radialGradient>
-    <radialGradient id="blob2">
-      <stop offset="0%" style="stop-color:#818cf8;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#818cf8;stop-opacity:0" />
-    </radialGradient>
-    <radialGradient id="blob3">
-      <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0" />
-    </radialGradient>
-    <radialGradient id="blob4">
-      <stop offset="0%" style="stop-color:#e879f9;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#e879f9;stop-opacity:0" />
-    </radialGradient>
-
     <!-- 头像圆形裁剪 -->
     <clipPath id="avatarClip">
-      <circle cx="220" cy="315" r="80"/>
+      <circle cx="230" cy="315" r="80"/>
     </clipPath>
   </defs>
 
-  <!-- 背景色 -->
-  <rect width="1200" height="630" fill="#F0F2F5"/>
-
-  <!-- 液态网格背景 - 彩色渐变球 -->
-  <ellipse cx="250" cy="180" rx="320" ry="320" fill="url(#blob1)" filter="url(#blur)"/>
-  <ellipse cx="950" cy="200" rx="240" ry="240" fill="url(#blob2)" filter="url(#blur)"/>
-  <ellipse cx="600" cy="500" rx="320" ry="320" fill="url(#blob3)" filter="url(#blur)"/>
-  <ellipse cx="150" cy="480" rx="160" ry="160" fill="url(#blob4)" filter="url(#blur)"/>
-
-  <!-- 半透明背景层（模拟 backdrop-blur） -->
-  <rect width="1200" height="630" fill="#F0F2F5" opacity="0.6"/>
+  <!-- 纸面底色 -->
+  <rect width="1200" height="630" fill="${colors.bg}"/>
 
   <!-- 噪点纹理层 -->
-  <rect width="1200" height="630" filter="url(#noise)" opacity="0.3" style="mix-blend-mode: overlay"/>
+  <rect width="1200" height="630" filter="url(#noise)" opacity="0.25"/>
 
-  <!-- 毛玻璃卡片主体 -->
+  <!-- 纸面卡片主体 -->
   <g>
-    <!-- 卡片阴影 -->
-    <rect x="105" y="145" width="990" height="340" rx="40" fill="rgba(0, 0, 0, 0.03)"/>
-
-    <!-- 卡片主体（毛玻璃效果） -->
-    <rect x="100" y="140" width="990" height="340" rx="40" fill="rgba(255, 255, 255, 0.4)"/>
-
-    <!-- 卡片内部高光边框 -->
-    <rect x="100" y="140" width="990" height="340" rx="40" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1.5"/>
+    <rect x="90" y="140" width="1020" height="350" rx="22" fill="${colors.surface}" stroke="${colors.border}" stroke-width="1.5"/>
+    <!-- 左侧 accent 竖条 -->
+    <rect x="90" y="240" width="4" height="150" rx="2" fill="${colors.accent}"/>
   </g>
 
   <!-- 头像部分 -->
   <g>
-    <!-- 头像外圈（白色毛玻璃） -->
-    <circle cx="220" cy="315" r="86" fill="rgba(255, 255, 255, 0.3)"/>
-    <circle cx="220" cy="315" r="86" fill="none" stroke="rgba(255, 255, 255, 0.5)" stroke-width="1.5"/>
-
-    <!-- 头像 -->
-    <image href="data:image/png;base64,${avatarBase64}" x="140" y="235" width="160" height="160" clip-path="url(#avatarClip)"/>
-
-    <!-- 头像边框 -->
-    <circle cx="220" cy="315" r="80" fill="none" stroke="rgba(102, 126, 234, 0.2)" stroke-width="3"/>
-
-    <!-- Online 状态标签 -->
-    <g transform="translate(270, 380)">
-      <rect x="-35" y="-12" width="70" height="24" rx="12" fill="rgba(255, 255, 255, 0.9)"/>
-      <rect x="-35" y="-12" width="70" height="24" rx="12" fill="none" stroke="rgba(255, 255, 255, 1)" stroke-width="1"/>
-      <!-- 绿点 -->
-      <circle cx="-20" cy="0" r="4" fill="#10b981"/>
-      <text x="-8" y="4" font-family="${fontStack}" font-size="11" fill="#6b7280" font-weight="500">Online</text>
-    </g>
+    <image href="data:image/png;base64,${avatarBase64}" x="150" y="235" width="160" height="160" clip-path="url(#avatarClip)"/>
+    <circle cx="230" cy="315" r="80" fill="none" stroke="${colors.border}" stroke-width="2"/>
   </g>
 
   <!-- 文字内容 -->
   <g>
-    <!-- 主标题 "多吃点" - 使用渐变 -->
-    <defs>
-      <linearGradient id="titleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style="stop-color:#1a202c;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#4b5563;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <text x="350" y="270" font-family="${fontStack}" font-size="72" font-weight="900" fill="url(#titleGradient)" letter-spacing="-2">${name}</text>
+    <!-- 主标题 "多吃点" -->
+    <text x="360" y="280" font-family="${fontStack}" font-size="72" font-weight="900" fill="${colors.text}" letter-spacing="-2">${name}</text>
+
+    <!-- accent 短线 -->
+    <rect x="360" y="305" width="64" height="5" rx="2.5" fill="${colors.accent}"/>
 
     <!-- 副标题 "@zkl2333 · 一个热爱生活的可爱男孩" -->
-    <text x="350" y="330" font-family="${fontStack}" font-size="24" fill="#6b7280" font-weight="500">
-      <tspan font-weight="600">@${username}</tspan>
-      <tspan fill="#9ca3af" font-size="20"> · ${tagline}</tspan>
+    <text x="360" y="360" font-family="${fontStack}" font-size="24" fill="${colors.muted}" font-weight="500">
+      <tspan font-weight="600" fill="${colors.accent}">@${username}</tspan>
+      <tspan font-size="20"> · ${tagline}</tspan>
     </text>
 
     <!-- 描述文字 -->
-    <text x="350" y="380" font-family="${fontStack}" font-size="18" fill="#6b7280">
-      <tspan x="350" dy="0">${bio.line1}</tspan>
-    </text>
+    <text x="360" y="410" font-family="${fontStack}" font-size="18" fill="${colors.muted}">${bio.line1}</text>
   </g>
 </svg>
   `.trim()

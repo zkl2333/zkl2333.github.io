@@ -32,7 +32,7 @@ jobs:
             - name: 设置 Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: "20"
+                  node-version: "24"
                   cache: "npm"
 
             - name: 安装中文字体（解决 OG 图片中文乱码）
@@ -46,11 +46,9 @@ jobs:
             - name: 获取 GitHub 数据
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  npm run fetch-data
-                  npm run generate:icons
+              run: npm run fetch-data
 
-            - name: 构建应用
+            - name: 构建应用（含图标生成）
               run: npm run build
 
             - name: 修复 SPA 路由问题
